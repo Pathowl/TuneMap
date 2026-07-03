@@ -82,9 +82,9 @@ function CarPage() {
         <div className="relative mx-auto max-w-[1400px] px-6 pb-16 pt-8 md:px-10">
           <Link
             to="/models"
-            className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground transition-colors hover:text-accent"
+            className="inline-flex items-center gap-2 font-mono text-[15px] uppercase tracking-[0.3em] text-muted-foreground transition-colors hover:text-accent"
           >
-            <ArrowLeft className="h-3 w-3" /> All models
+            <ArrowLeft className="h-4 w-4" /> All models
           </Link>
 
           <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-12">
@@ -105,7 +105,7 @@ function CarPage() {
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
                   href="#stages"
-                  className="inline-flex items-center gap-2 rounded-md bg-accent px-6 py-3 font-mono text-[11px] uppercase tracking-[0.3em] text-accent-foreground transition-all hover:shadow-[0_0_40px_-8px_var(--pink)]"
+                  className="inline-flex items-center gap-2 rounded-md bg-accent px-8 py-3 font-mono text-[13px] uppercase tracking-[0.3em] text-accent-foreground transition-all hover:shadow-[0_0_25px_-8px_var(--pink)]"
                 >
                   View build stages
                 </a>
@@ -347,10 +347,10 @@ function PartCard({ part }: { part: Part }) {
 function SpecItem({ label, value }: { label: string; value: string }) {
   return (
     <div className="border-l border-border/60 pl-4">
-      <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+      <div className="font-mono text-[12px] uppercase tracking-[0.3em] text-muted-foreground">
         {label}
       </div>
-      <div className="mt-1 font-display text-base text-foreground">{value}</div>
+      <div className="mt-1 font-display text-l text-foreground tracking-[0.1em]">{value}</div>
     </div>
   );
 }

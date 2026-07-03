@@ -24,9 +24,13 @@ export function Nav() {
       <div className="mx-auto grid max-w-[1400px] grid-cols-[auto_1fr_auto] items-center gap-6 px-6 py-4 md:px-10">
         <Link
           to="/"
-          className="font-display text-3xl italic leading-none text-foreground md:text-4xl"
+          className="text-2xl font-bold tracking-tighter text-foreground md:text-4xl"
         >
-          TUNEMAP
+          <img 
+            src="/no-backgroundandsmall.png" 
+            alt="Tunemap Logo" 
+            className="w-23 h-10 object-contain" 
+          />
         </Link>
 
         <nav className="hidden items-center justify-center gap-1 md:flex">
@@ -35,7 +39,7 @@ export function Nav() {
               key={l.to}
               to={l.to}
               activeOptions={l.exact ? { exact: true } : undefined}
-              className="group relative px-4 py-2 font-mono text-[11px] uppercase tracking-[0.35em] text-muted-foreground transition-colors hover:text-foreground"
+              className="group relative px-4 py-2 font-mono text-[18px] uppercase tracking-[0.35em] text-muted-foreground transition-colors hover:text-foreground"
               activeProps={{
                 className:
                   "text-foreground after:absolute after:left-4 after:right-4 after:-bottom-0.5 after:h-px after:bg-accent",
@@ -68,6 +72,7 @@ export function Nav() {
     </header>
   );
 }
+
 
 export function Footer() {
   return (

@@ -53,7 +53,7 @@ function Index() {
               <h1 className="mt-4 font-display text-6xl font-normal leading-[0.95] tracking-tight text-foreground md:text-8xl">
                 Tuning guide
                 <br />
-                <span className="italic text-neon">for all cars.</span>
+                <span className="text-neon">for all cars.</span>
               </h1>
             </Reveal>
 

@@ -54,7 +54,7 @@ export const CARS: Car[] = [
     year: "2002 – 2008",
     tagline:
       "VQ35 muscle. Naturally aspirated from the factory, restricted by emissions — the roadmap is unlock, then decide NA or boost.",
-    image: z33Img.url,
+    image: "/Nissan_CBA-Z33_Fairlady_Z_-_Nissan_XXA-Z33_Fairlady_Z_(23100111182).jpg",
     engine: "VQ35DE / VQ35HR",
     displacement: "3.5L V6 NA",
     layout: "Front-engine, RWD",
@@ -72,7 +72,7 @@ export const CARS: Car[] = [
     stages: [
       {
         id: 1,
-        code: "S1",
+        code: "Stage 1",
         title: "Breathing & Calibration",
         subtitle:
           "VQ35 is choked from the factory to meet emissions. Open the intake, exhaust, plenum and let the ECU see it.",
@@ -97,7 +97,7 @@ export const CARS: Car[] = [
       },
       {
         id: 2,
-        code: "S2",
+        code: "Stage 2",
         title: "Flow & Heat Management",
         subtitle:
           "Get exhaust gas out faster and control the oil temps the VQ struggles with under load. Mandatory before any track work.",
@@ -117,7 +117,7 @@ export const CARS: Car[] = [
       },
       {
         id: 3,
-        code: "S3",
+        code: "Stage 3",
         title: "NA Cams or Forced Induction",
         subtitle:
           "Bolt-ons are done. Pick a path: high-revving NA build, or supercharge / turbo it for 400+ whp.",
@@ -157,7 +157,7 @@ export const CARS: Car[] = [
     year: "2005 – 2010",
     tagline:
       "Volvo-sourced 2.5L turbo five. Torque monster, but heat and cylinder-liner strength cap the party at 300 hp.",
-    image: focusImg.url,
+    image: "/Ford_Focus_RS_Mk_II_IMG_2508.jpg",
     engine: "Duratec RS (B5254T)",
     displacement: "2.5L I5 Turbo",
     layout: "Front-engine, FWD",
@@ -175,7 +175,7 @@ export const CARS: Car[] = [
     stages: [
       {
         id: 1,
-        code: "S1",
+        code: "Stage 1",
         title: "The Basics",
         subtitle:
           "Stock ECU is conservative and the plastic diverter valve leaks boost. Fix both, add an intake.",
@@ -210,7 +210,7 @@ export const CARS: Car[] = [
       },
       {
         id: 2,
-        code: "S2",
+        code: "Stage 2",
         title: "Heat Management & Exhaust",
         subtitle:
           "The factory intercooler heat-soaks after one hard pull — you can't hold Stage 2 power safely without replacing it.",
@@ -236,7 +236,7 @@ export const CARS: Car[] = [
       },
       {
         id: 3,
-        code: "S3",
+        code: "Stage 3",
         title: 'Big Turbo & the "Block Mod"',
         subtitle:
           "Past 300 hp the cylinder liners are the weak link. Machine steel shims between the liners before adding a bigger turbo.",
@@ -278,7 +278,7 @@ export const CARS: Car[] = [
     year: "1999 – 2002",
     tagline:
       "Last of the Silvias. SR20DET responds violently to bolt-ons — but the valvetrain needs protection the second you raise the limiter.",
-    image: silviaImg.url,
+    image: "/Nissan_Silvia_S15_Spec_R_in_Europe.png",
     engine: "SR20DET",
     displacement: "2.0L I4 Turbo",
     layout: "Front-engine, RWD",
@@ -296,7 +296,7 @@ export const CARS: Car[] = [
     stages: [
       {
         id: 1,
-        code: "S1",
+        code: "Stage 1",
         title: "BPU — Basic Performance Upgrades",
         subtitle:
           "Free the T28 spool, dump the restrictive factory boost controller, and get on a modern ECU before you touch anything else.",
@@ -323,7 +323,7 @@ export const CARS: Car[] = [
       },
       {
         id: 2,
-        code: "S2",
+        code: "Stage 2",
         title: "Turbo Efficiency & Fueling",
         subtitle:
           "The stock T28 ball-bearing turbo runs out of breath here. Feed it more fuel, cool the charge, swap the snail.",
@@ -348,7 +348,7 @@ export const CARS: Car[] = [
       },
       {
         id: 3,
-        code: "S3",
+        code: "Stage 3",
         title: "Built Internals & Big Power",
         subtitle:
           "Past 400 hp reliably means opening the block, upgrading the valvetrain, and modernising the ignition.",
