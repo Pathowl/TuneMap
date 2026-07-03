@@ -182,10 +182,10 @@ function CarPage() {
                       {stage.code}
                     </div>
                     <div className="flex-1">
-                      <div className="font-display text-2xl italic text-foreground md:text-3xl">
+                      <div className="font-display text-2xl italic text-foreground tracking-[0.1em] md:text-3xl">
                         {stage.title}
                       </div>
-                      <div className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                      <div className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground tracking-[0.2em]">
                         {stage.subtitle}
                       </div>
                     </div>
@@ -266,7 +266,7 @@ function CarPage() {
         <Link
           to="/cars/$slug"
           params={{ slug: nextCar.slug }}
-          className="group relative flex items-center justify-between gap-6 overflow-hidden rounded-2xl border border-border bg-card p-8 transition-all duration-700 hover:border-accent hover:shadow-[0_0_60px_-15px_var(--pink)] md:p-12"
+          className="group relative flex items-center justify-between gap-6 overflow-hidden rounded-2xl border border-border bg-card p-8 transition-all duration-700 hover:border-accent hover:shadow-[0_0_40px_-15px_var(--pink)] md:p-12"
         >
           <div>
             <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-muted-foreground">
@@ -313,7 +313,7 @@ function PartCard({ part }: { part: Part }) {
           <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
             {part.brand}
           </div>
-          <div className="mt-1 font-display text-lg italic text-foreground">
+          <div className="mt-1 font-display text-xl italic text-foreground tracking-[0.12em]">
             {part.name}
           </div>
         </div>

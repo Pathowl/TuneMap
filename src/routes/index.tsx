@@ -35,10 +35,10 @@ function Index() {
             src={hero.image}
             alt=""
             aria-hidden
-            className="absolute inset-0 h-full w-full object-cover object-right opacity-40 md:opacity-60"
+            className="absolute inset-0 h-full w-full object-cover object-right opacity-80 md:opacity-90 dark:opacity-40 dark:md:opacity-60"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/40 to-transparent dark:from-background dark:via-background/85 dark:to-background/30" />
+          <div className="absolute inset-0 dark:bg-gradient-to-t dark:from-background dark:via-transparent dark:to-transparent" />
         </div>
 
         <div className="mx-auto grid min-h-[calc(100svh-5rem)] max-w-[1400px] items-center px-6 py-24 md:px-10">
@@ -59,7 +59,8 @@ function Index() {
 
             <Reveal delay={280}>
               <p className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground md:text-lg">
-                Pick a chassis. Follow the stages. Source the parts. A living roadmap built the way people actually build cars.
+                Pick a chassis. Follow the stages. Source the parts. A living roadmap built the way
+                people actually build cars.
               </p>
             </Reveal>
 
@@ -85,7 +86,7 @@ function Index() {
       </section>
 
       {/* FEATURED */}
-      <section className="relative border-t border-border/60 bg-background/60 py-24 backdrop-blur-sm">
+      <section className="relative border-t border-border/60 bg-background/60 py-16 backdrop-blur-sm">
         <div className="mx-auto max-w-[1400px] px-6 md:px-10">
           <Reveal>
             <div className="flex items-end justify-between border-b border-border/60 pb-4">
@@ -118,9 +119,9 @@ function Index() {
                     src={car.image}
                     alt={`${car.make} ${car.model}`}
                     loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover opacity-70 transition-all duration-700 group-hover:scale-105 group-hover:opacity-100"
+                    className="absolute inset-0 h-full w-full object-cover opacity-85 transition-all duration-700 group-hover:scale-105 group-hover:opacity-100"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent" />
                   <div className="absolute left-4 top-4 rounded border border-white/25 bg-black/40 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.3em] text-white backdrop-blur">
                     {car.chassis}
                   </div>
@@ -162,8 +163,16 @@ function Index() {
           <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
             {[
               { n: "01", t: "Pick", d: "Search for your chassis. Or browse by make." },
-              { n: "02", t: "Plan", d: "Stage 0 through Stage 2. Know what each step really gives you." },
-              { n: "03", t: "Build", d: "Curated parts with links, notes, and pricing references." },
+              {
+                n: "02",
+                t: "Plan",
+                d: "Stage 0 through Stage 2. Know what each step really gives you.",
+              },
+              {
+                n: "03",
+                t: "Build",
+                d: "Curated parts with links, notes, and pricing references.",
+              },
             ].map((s, i) => (
               <Reveal key={s.n} delay={i * 120}>
                 <div className="border-t border-border pt-5">
