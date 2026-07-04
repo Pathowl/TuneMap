@@ -50,10 +50,10 @@ function Index() {
             </Reveal>
 
             <Reveal delay={120}>
-              <h1 className="mt-4 font-display text-6xl font-normal leading-[0.95] tracking-tight text-foreground md:text-8xl">
-                Tuning guide
+              <h1 className="mt-4 font-display text-6xl font-normal leading-[0.95] tracking-tight text-foreground md:text-7xl">
+                Build roadmap for
                 <br />
-                <span className="text-neon">for all cars.</span>
+                <span className="text-neon">JDM and tuner bangers</span>
               </h1>
             </Reveal>
 
@@ -159,7 +159,7 @@ function Index() {
               </span>
             </h2>
           </Reveal>
-
+{/* 
           <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
             {[
               { n: "01", t: "Pick", d: "Search for your chassis. Or browse by make." },
@@ -184,7 +184,7 @@ function Index() {
                 </div>
               </Reveal>
             ))}
-          </div>
+          </div> */}
         </div>
       </section>
     </>

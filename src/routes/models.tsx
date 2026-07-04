@@ -44,7 +44,7 @@ function Models() {
           § 01 · Models
         </div>
         <h1 className="mt-2 font-display text-4xl font-normal text-foreground md:text-5xl">
-          Find your <span className="italic text-neon">chassis</span>.
+          Select your <span className="italic text-neon">chassis</span>.
         </h1>
       </div>
 
@@ -80,10 +80,10 @@ function Models() {
           {grouped.map(([brand, cars]) => (
             <div key={brand}>
               <div className="mb-4 flex items-baseline justify-between border-b border-border/60 pb-2">
-                <div className="font-mono text-[11px] uppercase tracking-[0.35em] text-foreground">
+                <div className="font-mono text-[15px] uppercase tracking-[0.35em] text-foreground">
                   {brand}
                 </div>
-                <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+                <div className="font-mono text-[13px] uppercase tracking-[0.3em] text-muted-foreground">
                   {String(cars.length).padStart(2, "0")} chassis
                 </div>
               </div>
@@ -100,9 +100,9 @@ function Models() {
                       src={car.image}
                       alt={`${car.make} ${car.model}`}
                       loading="lazy"
-                      className="absolute inset-0 h-full w-full object-cover opacity-70 transition-all duration-700 group-hover:scale-105 group-hover:opacity-100"
+                      className="absolute inset-0 h-full w-full object-cover opacity-100 dark:opacity-70 transition-all duration-700 group-hover:scale-105 group-hover:opacity-100"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent transition-opacity duration-500 group-hover:from-background/80" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-white/25 to-transparent transition-opacity duration-500 dark:from-background dark:via-background/50 dark:to-transparent dark:group-hover:from-background/80" />
                     <div className="absolute left-4 top-4 rounded border border-white/25 bg-black/40 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.3em] text-white backdrop-blur">
                       {car.chassis}
                     </div>

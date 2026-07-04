@@ -161,7 +161,7 @@ function CarPage() {
                 § Build stages
               </div>
               <h2 className="mt-2 font-display text-3xl font-normal text-foreground md:text-4xl">
-                From stock to sent<span className="text-neon">.</span>
+                Tuning roadmap
               </h2>
             </div>
             <div className="hidden font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground md:block">
