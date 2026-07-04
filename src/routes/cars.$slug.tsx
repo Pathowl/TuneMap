@@ -220,9 +220,13 @@ function CarPage() {
                     </p>
                   ) : null}
                   <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-                    {stage.parts.map((p: Part) => (
-                      <PartCard key={p.name} part={p} />
-                    ))}
+                    {groupPartsForDisplay(stage.parts).map((item, index) =>
+                      item.kind === "alternative-group" ? (
+                        <AlternativeGroup key={`${item.title}-${index}`} title={item.title} parts={item.parts} />
+                      ) : (
+                        <PartCard key={item.part.name} part={item.part} />
+                      ),
+                    )}
                   </div>
                 </AccordionContent>
               </AccordionItem>
@@ -296,6 +300,90 @@ function CarPage() {
   );
 }
 
+function groupPartsForDisplay(parts: Part[]) {
+  const displayItems: Array<{ kind: "part"; part: Part } | { kind: "alternative-group"; title: string; parts: Part[] }> = [];
+  let buffer: Part[] = [];
+  let activeTitle: string | null = null;
+
+  const flushBuffer = () => {
+    if (!buffer.length) return;
+
+    if (buffer.length > 1 && activeTitle) {
+      displayItems.push({ kind: "alternative-group", title: activeTitle, parts: buffer });
+    } else {
+      buffer.forEach((part) => displayItems.push({ kind: "part", part }));
+    }
+
+    buffer = [];
+    activeTitle = null;
+  };
+
+  parts.forEach((part) => {
+    const group = part.group;
+
+    if (group?.kind === "alternative") {
+      if (activeTitle && activeTitle !== group.title) {
+        flushBuffer();
+      }
+
+      buffer.push(part);
+      activeTitle = group.title;
+    } else {
+      flushBuffer();
+      displayItems.push({ kind: "part", part });
+    }
+  });
+
+  flushBuffer();
+  return displayItems;
+}
+
+function AlternativeGroup({ title, parts }: { title: string; parts: Part[] }) {
+  return (
+    <div className="rounded-xl border border-border/70 bg-background/30 p-4 md:col-span-2">
+      <div className="mb-3 flex items-center gap-2">
+        <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+          {title}
+        </div>
+        <div className="h-px flex-1 bg-border/60" />
+      </div>
+      <Accordion type="single" collapsible className="space-y-2">
+        {parts.map((part, index) => (
+          <AccordionItem
+            key={part.name}
+            value={part.name}
+            className="overflow-hidden rounded-lg border border-border/60 bg-card/60"
+          >
+            <AccordionTrigger className="px-4 py-3 text-left hover:no-underline">
+              <div className="flex w-full items-center justify-between gap-3">
+                <div className="min-w-0 text-left">
+                  <div className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted-foreground">
+                    {index === 0 ? "Option A" : "Option B"}
+                  </div>
+                  <div className="mt-1 font-mono text-sm font-medium uppercase tracking-[0.14em] text-foreground">
+                    {part.name}
+                  </div>
+                  <div className="mt-1 text-left text-xs text-muted-foreground">
+                    {part.brand}
+                  </div>
+                </div>
+                <span className="shrink-0 rounded-full border border-border/70 bg-background/70 px-2.5 py-1 font-mono text-[8px] uppercase tracking-[0.3em] text-muted-foreground">
+                  Expand
+                </span>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent className="px-4 pb-4">
+              <div className="border-t border-border/50 pt-3">
+                <PartCard part={part} />
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
+    </div>
+  );
+}
+
 function PartCard({ part }: { part: Part }) {
   const links: { label: string; url: string }[] =
     part.links && part.links.length > 0
@@ -308,16 +396,21 @@ function PartCard({ part }: { part: Part }) {
 
   return (
     <div className="group rounded-lg border border-border bg-card/60 p-5 transition-all duration-500 hover:border-accent hover:bg-card">
-      <div className="flex items-start justify-between gap-3">
-        <div>
+      <div className="flex items-start gap-3">
+        <div className="min-w-0">
           <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
             {part.brand}
           </div>
-          <div className="mt-1 font-display text-xl italic text-foreground tracking-[0.12em]">
+          <div className="mt-1 font-mono text-sm font-medium uppercase tracking-[0.16em] text-foreground sm:text-base">
             {part.name}
           </div>
+          {part.price ? (
+            <div className="mt-2 text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+              Estimated Cost
+              <span className="ml-1 font-mono text-[11px] text-foreground">{part.price}</span>
+            </div>
+          ) : null}
         </div>
-        {part.price ? <span className="font-mono text-sm text-neon">{part.price}</span> : null}
       </div>
 
       {part.note ? (
