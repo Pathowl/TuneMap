@@ -81,7 +81,11 @@ export const CARS: Car[] = [
         torque: "+20–30 Nm",
         note: "Plenum spacer is DE-only — the HR head fixed the front-cylinder starvation issue.",
         parts: [
-          { name: "Cold Air Intake", brand: "Z1 Motorsports / JWT PopCharger", price: "$200 - $300" },
+          {
+            name: "Cold Air Intake",
+            brand: "Z1 Motorsports / JWT PopCharger",
+            price: "$200 - $300",
+          },
           {
             name: '5/16" Plenum Spacer (VQ35DE only)',
             brand: "Motordyne",
@@ -197,10 +201,16 @@ export const CARS: Car[] = [
         code: "Stage 1",
         title: "The Basics",
         subtitle:
-          "Stock ECU is conservative and the plastic diverter valve leaks boost. Fix both, add an intake.",
+          "Block mod! Stock ECU is conservative and the plastic diverter valve leaks boost. Fix both, add an intake.",
         power: "260–275 hp",
         torque: "~490 Nm (360 ft·lb)",
         parts: [
+          { 
+             name: "The Block Mod (Stainless Liner Shims)", 
+             brand: "Machine work", 
+             price: "$800 - $1,200", 
+             note: "Crucial preventative maintenance. Liners are prone to cracking past 300 hp; highly recommended before any tuning." 
+          },
           {
             name: "Group A Induction Kit",
             brand: "Dreamscience",
@@ -269,14 +279,8 @@ export const CARS: Car[] = [
           "Past 300 hp the cylinder liners are the weak link. Machine steel shims between the liners before adding a bigger turbo.",
         power: "350–400+ hp",
         torque: "600+ Nm",
-        note: "Without the block mod, pushing past 300 hp risks cracking a liner and destroying the engine.",
+        note: "Ensure the Block Mod (listed in maintenance) is completed before flashing a Stage 3 map.",
         parts: [
-          {
-            name: "The Block Mod (stainless liner shims)",
-            brand: "Machine work",
-            price: "$800 - $1,200",
-            note: "Non-negotiable at this power level.",
-          },
           {
             name: "K06 Hybrid Turbo",
             brand: "Turbo Technics",
@@ -300,7 +304,7 @@ export const CARS: Car[] = [
       },
     ],
   },
-  {
+{
     slug: "silvia-s15",
     index: "03",
     make: "Nissan",
@@ -328,22 +332,38 @@ export const CARS: Car[] = [
       {
         id: 1,
         code: "Stage 1",
-        title: "BPU — Basic Performance Upgrades",
+        title: "SUTUTUTU",
         subtitle:
-          "Free the T28 spool, dump the restrictive factory boost controller, and get on a modern ECU before you touch anything else.",
+          "Free the T28 spool, dump the restrictive factory boost controller, and unleash the legendary SR20 compressor surge.",
         power: "280–300 hp",
         torque: "+80–100 Nm",
         note: "Do the Link ECU early. The 1990s factory computer has no modern engine protection.",
         parts: [
-          { name: "Power Intake", brand: "Apexi", price: "$120 - $180" },
-          { name: "Super Power Flow", brand: "HKS", price: "$150 - $220", note: "Alternative filter." },
+          { 
+            name: "Recirc Valve Block-Off Plate", 
+            brand: "GKTech", 
+            price: "$15 - $25", 
+            note: "The secret sauce. Deletes the factory bypass valve to force compressor surge (SUTUTUTU) on throttle lift." 
+          },
+          { 
+            name: "Power Intake", 
+            brand: "Apexi", 
+            price: "$120 - $180", 
+            note: "Ditching the factory airbox is mandatory to actually hear the turbo spool and flutter." 
+          },
+          {
+            name: "Super Power Flow",
+            brand: "HKS",
+            price: "$150 - $220",
+            note: "Alternative filter. The metal cage design heavily amplifies induction noise and flutter.",
+          },
           { name: 'Expreme Ti 3" Turbo-Back', brand: "Tomei", price: "$1,100 - $1,300" },
           { name: "Hi-Power Exhaust", brand: "HKS", price: "$700 - $900" },
           {
             name: "Profec Boost Controller",
             brand: "GReddy",
             price: "$350 - $450",
-            note: "Target ~1.0 bar / 14.5 psi.",
+            note: "Target ~1.0 bar / 14.5 psi. Higher boost pressure directly equals louder flutter.",
           },
           { name: "e-Boost2 Boost Controller", brand: "Turbosmart", price: "$500 - $600" },
           {
@@ -370,7 +390,12 @@ export const CARS: Car[] = [
           },
           { name: "740cc Injectors", brand: "Nismo", price: "$600 - $800" },
           { name: "255lph Fuel Pump", brand: "Walbro", price: "$100 - $130" },
-          { name: "340lph Fuel Pump", brand: "AEM", price: "$120 - $160", note: "Alternative to Walbro." },
+          {
+            name: "340lph Fuel Pump",
+            brand: "AEM",
+            price: "$120 - $160",
+            note: "Alternative to Walbro.",
+          },
           {
             name: "GT2871R Ball-Bearing Turbo",
             brand: "Garrett",
@@ -450,7 +475,12 @@ export const CARS: Car[] = [
     redline: "6,500 rpm",
     maintenance: [
       { name: "Top Tec 6600 0W-20 Full Service", brand: "Liqui Moly", price: "$70 - $100" },
-      { name: "Aluminum Chargepipe Upgrade", brand: "FTP Performance", price: "$200 - $300", note: "Replaces brittle plastic factory pipe before it cracks under elevated boost." },
+      {
+        name: "Aluminum Chargepipe Upgrade",
+        brand: "FTP Performance",
+        price: "$200 - $300",
+        note: "Replaces brittle plastic factory pipe before it cracks under elevated boost.",
+      },
       { name: "Laser Iridium Spark Plugs (Gapped down)", brand: "NGK", price: "$90 - $140" },
       { name: "High-Performance Brake Fluid", brand: "Castrol SRF", price: "$70 - $100" },
     ],
@@ -459,12 +489,17 @@ export const CARS: Car[] = [
         id: 1,
         code: "Stage 1",
         title: "Software Wake-Up",
-        subtitle: "The factory B58 configuration is heavily dialled back. A simple ECU recalibration transforms the vehicle into a different animal.",
+        subtitle:
+          "The factory B58 configuration is heavily dialled back. A simple ECU recalibration transforms the vehicle into a different animal.",
         power: "420–440 crank hp",
         torque: "+100–120 Nm",
         note: "2021+ model years require a bench unlock (often requiring shipping the ECU to Femto) before any OBD flashing is possible.",
         parts: [
-          { name: "MHD / BootMod3 Flashing License", brand: "MHD / ProTuningFreaks", price: "$600 - $700" },
+          {
+            name: "MHD / BootMod3 Flashing License",
+            brand: "MHD / ProTuningFreaks",
+            price: "$600 - $700",
+          },
           { name: "Drop-In Panel Air Filter", brand: "BMC", price: "$70 - $100" },
         ],
       },
@@ -472,26 +507,56 @@ export const CARS: Car[] = [
         id: 2,
         code: "Stage 2",
         title: "Thermal Management & High Flow",
-        subtitle: "Open up the exhaust restriction directly behind the turbo scroll and optimize fuel flow to allow high-torque map variations.",
+        subtitle:
+          "Open up the exhaust restriction directly behind the turbo scroll and optimize fuel flow to allow high-torque map variations.",
         power: "480–510 crank hp",
         torque: "+160–180 Nm",
         parts: [
-          { name: "4-inch Catted/Catless Downpipe", brand: "Active Autowerke / VRSF", price: "$500 - $1,000" },
-          { name: "Stage 2 High-Pressure Fuel Pump (HPFP)", brand: "Dorch Engineering", price: "$1,200 - $1,600", note: "Mandatory step if you intend to run high ethanol contents like E50 blends." },
-          { name: "TCU Flashing Software", brand: "xHP Flashtool", price: "$350 - $450", note: "Raises torque limits inside the ZF8 transmission to stop electronic clutch slipping." },
+          {
+            name: "4-inch Catted/Catless Downpipe",
+            brand: "Active Autowerke / VRSF",
+            price: "$500 - $1,000",
+          },
+          {
+            name: "Stage 2 High-Pressure Fuel Pump (HPFP)",
+            brand: "Dorch Engineering",
+            price: "$1,200 - $1,600",
+            note: "Mandatory step if you intend to run high ethanol contents like E50 blends.",
+          },
+          {
+            name: "TCU Flashing Software",
+            brand: "xHP Flashtool",
+            price: "$350 - $450",
+            note: "Raises torque limits inside the ZF8 transmission to stop electronic clutch slipping.",
+          },
         ],
       },
       {
         id: 3,
         code: "Stage 3",
         title: "Hybrid Turbo & Flex Fuel",
-        subtitle: "The stock twin-scroll turbo runs out of breath past 500 hp. Swap the core for a modified compressor footprint to crack supercar numbers.",
+        subtitle:
+          "The stock twin-scroll turbo runs out of breath past 500 hp. Swap the core for a modified compressor footprint to crack supercar numbers.",
         power: "650–700+ crank hp",
         torque: "+280–320 Nm",
         parts: [
-          { name: "Pure800 / Pure750 Hybrid Turbocharger", brand: "Pure Turbos", price: "$2,500 - $3,200" },
-          { name: "Plug-and-Play Flex Fuel Kit", brand: "Visconti Tuning", price: "$600 - $800", note: "Allows seamless adjustments between standard pump gas and raw E85 fuel." },
-          { name: "Custom Calibration Map", brand: "Marek / Cedar Performance", price: "$700 - $1,200", note: "Highly tailored tune mapping to balance load and safely protect stock engine internals." },
+          {
+            name: "Pure800 / Pure750 Hybrid Turbocharger",
+            brand: "Pure Turbos",
+            price: "$2,500 - $3,200",
+          },
+          {
+            name: "Plug-and-Play Flex Fuel Kit",
+            brand: "Visconti Tuning",
+            price: "$600 - $800",
+            note: "Allows seamless adjustments between standard pump gas and raw E85 fuel.",
+          },
+          {
+            name: "Custom Calibration Map",
+            brand: "Marek / Cedar Performance",
+            price: "$700 - $1,200",
+            note: "Highly tailored tune mapping to balance load and safely protect stock engine internals.",
+          },
         ],
       },
     ],
@@ -515,47 +580,93 @@ export const CARS: Car[] = [
     drivetrain: "6-speed manual",
     redline: "7,000 rpm",
     maintenance: [
-      { name: "Synchromesh MTF Gearbox Fluid", brand: "Amsoil", price: "$40 - $70", note: "Helps alleviate the notorious 1st-to-2nd gear notchiness and high-rpm lockouts." },
+      {
+        name: "Synchromesh MTF Gearbox Fluid",
+        brand: "Amsoil",
+        price: "$40 - $70",
+        note: "Helps alleviate the notorious 1st-to-2nd gear notchiness and high-rpm lockouts.",
+      },
       { name: "8100 Eco-lite 0W-20 Service", brand: "Motul", price: "$60 - $90" },
-      { name: "Street/Track Rear Motor Mount (RMM)", brand: "Hasport (62A)", price: "$150 - $220", note: "Controls aggressive engine pitch under hard acceleration to eliminate wheel hop." },
+      {
+        name: "Street/Track Rear Motor Mount (RMM)",
+        brand: "Hasport (62A)",
+        price: "$150 - $220",
+        note: "Controls aggressive engine pitch under hard acceleration to eliminate wheel hop.",
+      },
     ],
     stages: [
       {
         id: 1,
         code: "Stage 1",
         title: "Induction & Calibration",
-        subtitle: "Uncork the intake tract and manipulate target boost curves via the factory engine management system.",
+        subtitle:
+          "Uncork the intake tract and manipulate target boost curves via the factory engine management system.",
         power: "340–350 crank hp",
         torque: "+60–70 Nm",
         parts: [
-          { name: "Hondata FlashPro / KTuner V2", brand: "Hondata / KTuner", price: "$700 - $850", note: "Requires jailbreaking or unlocking the factory ECU before installation." },
+          {
+            name: "Hondata FlashPro / KTuner V2",
+            brand: "Hondata / KTuner",
+            price: "$700 - $850",
+            note: "Requires jailbreaking or unlocking the factory ECU before installation.",
+          },
           { name: "High-Volume Intake System", brand: "PRL Motorsports", price: "$400 - $500" },
-          { name: "Upgraded Intercooler Core", brand: "PRL Motorsports", price: "$750 - $900", note: "Crucial early modification. The stock intercooler heat-soaks after a single hard pull." },
+          {
+            name: "Upgraded Intercooler Core",
+            brand: "PRL Motorsports",
+            price: "$750 - $900",
+            note: "Crucial early modification. The stock intercooler heat-soaks after a single hard pull.",
+          },
         ],
       },
       {
         id: 2,
         code: "Stage 2",
         title: "Full Exhaust Unification",
-        subtitle: "Clear out the heavy factory restriction at the downpipe level to minimize backpressure and drop exhaust gas temperatures.",
+        subtitle:
+          "Clear out the heavy factory restriction at the downpipe level to minimize backpressure and drop exhaust gas temperatures.",
         power: "370–385 crank hp",
         torque: "+100–110 Nm",
         parts: [
-          { name: "Cast High-Flow Downpipe & Frontpipe", brand: "PRL Motorsports / RV6", price: "$600 - $900" },
-          { name: "Triple-Tip Cat-Back Exhaust System", brand: "Invidia R400 / Milltek", price: "$1,200 - $1,600" },
+          {
+            name: "Cast High-Flow Downpipe & Frontpipe",
+            brand: "PRL Motorsports / RV6",
+            price: "$600 - $900",
+          },
+          {
+            name: "Triple-Tip Cat-Back Exhaust System",
+            brand: "Invidia R400 / Milltek",
+            price: "$1,200 - $1,600",
+          },
         ],
       },
       {
         id: 3,
         code: "Stage 3",
         title: "Turbo Upgrades & Fuel System Expansion",
-        subtitle: "The factory direct injection system peaks early. Upgrading the fuel delivery allows a larger compressor unit to shine.",
+        subtitle:
+          "The factory direct injection system peaks early. Upgrading the fuel delivery allows a larger compressor unit to shine.",
         power: "460–500 crank hp",
         torque: "+150–170 Nm",
         parts: [
-          { name: "MHI Stage 2 Upgrade Turbocharger", brand: "Mitsubishi Heavy Industries", price: "$2,200 - $2,600", note: "An ideal factory-location upgrade designed by Honda's original turbo supplier." },
-          { name: "Hondata Fuel System Upgrade Kit", brand: "Hondata", price: "$2,800 - $3,200", note: "Includes higher-flow injectors, low-pressure lines, and an uprated high-pressure mechanical pump." },
-          { name: "Stage 3 Performance Clutch Kit", brand: "Clutch Masters / Action Clutch", price: "$900 - $1,300", note: "The stock pressure plate will slip instantly when subjected to Stage 3 torque." },
+          {
+            name: "MHI Stage 2 Upgrade Turbocharger",
+            brand: "Mitsubishi Heavy Industries",
+            price: "$2,200 - $2,600",
+            note: "An ideal factory-location upgrade designed by Honda's original turbo supplier.",
+          },
+          {
+            name: "Hondata Fuel System Upgrade Kit",
+            brand: "Hondata",
+            price: "$2,800 - $3,200",
+            note: "Includes higher-flow injectors, low-pressure lines, and an uprated high-pressure mechanical pump.",
+          },
+          {
+            name: "Stage 3 Performance Clutch Kit",
+            brand: "Clutch Masters / Action Clutch",
+            price: "$900 - $1,300",
+            note: "The stock pressure plate will slip instantly when subjected to Stage 3 torque.",
+          },
         ],
       },
     ],
@@ -579,49 +690,102 @@ export const CARS: Car[] = [
     drivetrain: "6-speed DSG · 6-speed manual",
     redline: "6,500 rpm",
     maintenance: [
-      { name: "Dual-Clutch Transmission Fluid Service", brand: "Liqui Moly DSG", price: "$120 - $180", note: "Strictly required every 40,000 miles to preserve fast clutch clamping speeds." },
-      { name: "Upgraded Water Pump & Thermostat Housing", brand: "OEM VW (Latest Revision)", price: "$300 - $450", note: "The notorious failure point of this block; inspect constantly for slow coolant weeping." },
-      { name: "Racing Spark Plugs (Non-Projected)", brand: "NGK R7437-9", price: "$150 - $200", note: "Gapped tightly to prevents spark blowout under elevated boost profiles." },
+      {
+        name: "Dual-Clutch Transmission Fluid Service",
+        brand: "Liqui Moly DSG",
+        price: "$120 - $180",
+        note: "Strictly required every 40,000 miles to preserve fast clutch clamping speeds.",
+      },
+      {
+        name: "Upgraded Water Pump & Thermostat Housing",
+        brand: "OEM VW (Latest Revision)",
+        price: "$300 - $450",
+        note: "The notorious failure point of this block; inspect constantly for slow coolant weeping.",
+      },
+      {
+        name: "Racing Spark Plugs (Non-Projected)",
+        brand: "NGK R7437-9",
+        price: "$150 - $200",
+        note: "Gapped tightly to prevents spark blowout under elevated boost profiles.",
+      },
     ],
     stages: [
       {
         id: 1,
         code: "Stage 1",
         title: "The Baseline Flash",
-        subtitle: "VAG intentionally left an enormous amount of performance headroom on the table. Bring it to light with software alone.",
+        subtitle:
+          "VAG intentionally left an enormous amount of performance headroom on the table. Bring it to light with software alone.",
         power: "290–300 crank hp",
         torque: "+110–130 Nm",
         note: "If equipped with a manual gearbox, the factory clutch will begin slipping within weeks at this torque level.",
         parts: [
-          { name: "Accessport V3 with EQT Custom Tunes", brand: "Cobb / Equilibrium Tuning", price: "$700 - $850" },
+          {
+            name: "Accessport V3 with EQT Custom Tunes",
+            brand: "Cobb / Equilibrium Tuning",
+            price: "$700 - $850",
+          },
           { name: "Cold Air Intake System", brand: "Integrated Engineering", price: "$350 - $450" },
-          { name: "DSG TCU Software Tune (If automatic)", brand: "EQT / APR", price: "$400 - $500", note: "Crucial modification to increase oil pressure clamp forces across the clutch packs." },
+          {
+            name: "DSG TCU Software Tune (If automatic)",
+            brand: "EQT / APR",
+            price: "$400 - $500",
+            note: "Crucial modification to increase oil pressure clamp forces across the clutch packs.",
+          },
         ],
       },
       {
         id: 2,
         code: "Stage 2",
         title: "Unrestricted Exfiltration",
-        subtitle: "Free up backpressure directly at the exhaust turbine face and expand cooling capabilities to withstand repeated back-to-back pulls.",
+        subtitle:
+          "Free up backpressure directly at the exhaust turbine face and expand cooling capabilities to withstand repeated back-to-back pulls.",
         power: "330–345 crank hp",
         torque: "+150–170 Nm",
         parts: [
-          { name: "Cast Downpipe with High-Flow Catalyst", brand: "Integrated Engineering", price: "$750 - $900" },
-          { name: "Direct-Fit FDS Intercooler Upgrade", brand: "Wagner Tuning / APR", price: "$800 - $1,000" },
-          { name: "Stage 2 Daily Clutch Kit (If manual)", brand: "South Bend", price: "$1,300 - $1,500", note: "Upgrades to a single-mass flywheel format to handle heavy mid-range torque hits." },
+          {
+            name: "Cast Downpipe with High-Flow Catalyst",
+            brand: "Integrated Engineering",
+            price: "$750 - $900",
+          },
+          {
+            name: "Direct-Fit FDS Intercooler Upgrade",
+            brand: "Wagner Tuning / APR",
+            price: "$800 - $1,000",
+          },
+          {
+            name: "Stage 2 Daily Clutch Kit (If manual)",
+            brand: "South Bend",
+            price: "$1,300 - $1,500",
+            note: "Upgrades to a single-mass flywheel format to handle heavy mid-range torque hits.",
+          },
         ],
       },
       {
         id: 3,
         code: "Stage 3",
         title: "The Golf R Conversion (IS38 or Hybrid)",
-        subtitle: "Ditch the small factory IS20 turbocharger architecture in favor of the larger factory unit pulled from the AWD Golf R, or choose a custom core.",
+        subtitle:
+          "Ditch the small factory IS20 turbocharger architecture in favor of the larger factory unit pulled from the AWD Golf R, or choose a custom core.",
         power: "390–450 crank hp",
         torque: "+200–240 Nm",
         parts: [
-          { name: "IS38 OEM Turbocharger Swap / Vortex Standard", brand: "IHI / EQT", price: "$1,200 - $1,800" },
-          { name: "Brushless Low-Pressure Fuel Pump Upgrade", brand: "EQT / Fuel-It", price: "$450 - $600" },
-          { name: "4-Bar PUT & MAP Sensor Kit", brand: "Bosch / OEM VAG", price: "$120 - $160", note: "Allows the engine control unit to accurately read boost ranges stretching well north of 29 psi." },
+          {
+            name: "IS38 OEM Turbocharger Swap / Vortex Standard",
+            brand: "IHI / EQT",
+            price: "$1,200 - $1,800",
+          },
+          {
+            name: "Brushless Low-Pressure Fuel Pump Upgrade",
+            brand: "EQT / Fuel-It",
+            price: "$450 - $600",
+          },
+          {
+            name: "4-Bar PUT & MAP Sensor Kit",
+            brand: "Bosch / OEM VAG",
+            price: "$120 - $160",
+            note: "Allows the engine control unit to accurately read boost ranges stretching well north of 29 psi.",
+          },
         ],
       },
     ],
@@ -646,20 +810,40 @@ export const CARS: Car[] = [
     redline: "7,450 rpm",
     maintenance: [
       { name: "Gear 300 75W-90 Transmission Fluid", brand: "Motul", price: "$60 - $90" },
-      { name: "Rear Shifter Bushing Combo Kit", brand: "Whiteline", price: "$50 - $80", note: "Improves loose shifter gate feel and mechanical tracking accuracy under side load." },
-      { name: "19-Row Track Oil Cooler Kit", brand: "Jackson Racing", price: "$700 - $850", note: "Crucial insurance policy — boxer engines naturally subject oil to immense friction heat." },
+      {
+        name: "Rear Shifter Bushing Combo Kit",
+        brand: "Whiteline",
+        price: "$50 - $80",
+        note: "Improves loose shifter gate feel and mechanical tracking accuracy under side load.",
+      },
+      {
+        name: "19-Row Track Oil Cooler Kit",
+        brand: "Jackson Racing",
+        price: "$700 - $850",
+        note: "Crucial insurance policy — boxer engines naturally subject oil to immense friction heat.",
+      },
     ],
     stages: [
       {
         id: 1,
         code: "Stage 1",
         title: "Flattening the Torque Curve",
-        subtitle: "The dip in the middle of the rev range is artificial, caused by primary catalytic layout. Swap the header configuration to kill it.",
+        subtitle:
+          "The dip in the middle of the rev range is artificial, caused by primary catalytic layout. Swap the header configuration to kill it.",
         power: "210–215 crank hp",
         torque: "+15–20 Nm",
         parts: [
-          { name: "Unequal Length (UEL) Exhaust Header", brand: "Tomei Expreme / JDL", price: "$750 - $950", note: "Returns the classic offset boxer rumble while filling the mid-range power gap." },
-          { name: "OpenFlash Tablet V2 / EcuTek Interface", brand: "OpenFlash Performance / EcuTek", price: "$550 - $900" },
+          {
+            name: "Unequal Length (UEL) Exhaust Header",
+            brand: "Tomei Expreme / JDL",
+            price: "$750 - $950",
+            note: "Returns the classic offset boxer rumble while filling the mid-range power gap.",
+          },
+          {
+            name: "OpenFlash Tablet V2 / EcuTek Interface",
+            brand: "OpenFlash Performance / EcuTek",
+            price: "$550 - $900",
+          },
           { name: "Cat-Back Exhaust System", brand: "Invidia N1 / Q300", price: "$700 - $1,000" },
         ],
       },
@@ -667,27 +851,56 @@ export const CARS: Car[] = [
         id: 2,
         code: "Stage 2",
         title: "Ethanol Liberation",
-        subtitle: "The FA20 high compression ratio (12.5:1) thrives on high-octane alternatives. Add real-time flex-fuel mapping to squeeze the NA engine dry.",
+        subtitle:
+          "The FA20 high compression ratio (12.5:1) thrives on high-octane alternatives. Add real-time flex-fuel mapping to squeeze the NA engine dry.",
         power: "225–235 crank hp",
         torque: "+25–35 Nm",
         parts: [
-          { name: "Flex Fuel Sensor & Controller Kit", brand: "Delicious Tuning", price: "$600 - $750" },
-          { name: "Overpipe & Dual Resonated Frontpipe", brand: "JDL Design", price: "$450 - $600" },
-          { name: "Series 500 Performance Coilovers", brand: "Fortune Auto", price: "$1,400 - $1,800", note: "Complements power upgrades with high-fidelity control adjustments." },
+          {
+            name: "Flex Fuel Sensor & Controller Kit",
+            brand: "Delicious Tuning",
+            price: "$600 - $750",
+          },
+          {
+            name: "Overpipe & Dual Resonated Frontpipe",
+            brand: "JDL Design",
+            price: "$450 - $600",
+          },
+          {
+            name: "Series 500 Performance Coilovers",
+            brand: "Fortune Auto",
+            price: "$1,400 - $1,800",
+            note: "Complements power upgrades with high-fidelity control adjustments.",
+          },
         ],
       },
       {
         id: 3,
         code: "Stage 3",
         title: "Forced Induction Framework",
-        subtitle: "With bolt-on limits reached, the engine needs real atmosphere packing. Opt for a highly responsive supercharger or a broad-spectrum turbo setup.",
+        subtitle:
+          "With bolt-on limits reached, the engine needs real atmosphere packing. Opt for a highly responsive supercharger or a broad-spectrum turbo setup.",
         power: "290–350 crank hp",
         torque: "+100–160 Nm",
         note: "Limit torque targets below 340 Nm on a stock engine block to protect factory connecting rods from snapping.",
         parts: [
-          { name: "Rotrex C30/C38 Centrifugal Supercharger Kit", brand: "Jackson Racing", price: "$4,500 - $5,500", note: "Delivers a completely linear, high-revving power delivery that maintains original NA character." },
-          { name: "Heavy Duty Performance Clutch Kit", brand: "ACT", price: "$600 - $800", note: "Mandatory choice to grip against rapid forced induction torque curves." },
-          { name: "700cc Fuel Injectors & DW300c Pump", brand: "DeatschWerks", price: "$450 - $600" },
+          {
+            name: "Rotrex C30/C38 Centrifugal Supercharger Kit",
+            brand: "Jackson Racing",
+            price: "$4,500 - $5,500",
+            note: "Delivers a completely linear, high-revving power delivery that maintains original NA character.",
+          },
+          {
+            name: "Heavy Duty Performance Clutch Kit",
+            brand: "ACT",
+            price: "$600 - $800",
+            note: "Mandatory choice to grip against rapid forced induction torque curves.",
+          },
+          {
+            name: "700cc Fuel Injectors & DW300c Pump",
+            brand: "DeatschWerks",
+            price: "$450 - $600",
+          },
         ],
       },
     ],
@@ -711,48 +924,101 @@ export const CARS: Car[] = [
     drivetrain: "6-speed manual · 6-speed automatic",
     redline: "7,000 rpm",
     maintenance: [
-      { name: "Index 12 Fuel Injectors (x6)", brand: "OEM BMW", price: "$1,800 - $2,400", note: "Mandatory fix. Early index revisions suffer from terminal leaking that can destroy cylinders." },
-      { name: "Walnut Blasting Valve Service", brand: "Independent BMW Specialist", price: "$400 - $600", note: "Crucial direct injection maintenance required to scrub away severe carbon choking every 40k miles." },
-      { name: "Upgraded Electric Water Pump + Thermostat", brand: "Continental / Pierburg", price: "$400 - $550" },
+      {
+        name: "Index 12 Fuel Injectors (x6)",
+        brand: "OEM BMW",
+        price: "$1,800 - $2,400",
+        note: "Mandatory fix. Early index revisions suffer from terminal leaking that can destroy cylinders.",
+      },
+      {
+        name: "Walnut Blasting Valve Service",
+        brand: "Independent BMW Specialist",
+        price: "$400 - $600",
+        note: "Crucial direct injection maintenance required to scrub away severe carbon choking every 40k miles.",
+      },
+      {
+        name: "Upgraded Electric Water Pump + Thermostat",
+        brand: "Continental / Pierburg",
+        price: "$400 - $550",
+      },
     ],
     stages: [
       {
         id: 1,
         code: "Stage 1",
         title: "The Initial Boost Spike",
-        subtitle: "The stock twin-turbos are barely working from factory. Unshackle target load ceilings using standard hand-held flashing frameworks.",
+        subtitle:
+          "The stock twin-turbos are barely working from factory. Unshackle target load ceilings using standard hand-held flashing frameworks.",
         power: "360–380 crank hp",
         torque: "+120–140 Nm",
         parts: [
-          { name: "MHD Wireless Flashing Adapter & License", brand: "MHD Tuning", price: "$250 - $400" },
-          { name: "Dual Cone Intake (DCI) Upgrade", brand: "Burger Tuning (BMS)", price: "$100 - $150" },
-          { name: "Aluminum Chargepipe with TiAL Blow-Off Valve", brand: "VRSF", price: "$250 - $350", note: "Replaces the fragile OEM plastic pipe, which will instantly blow apart on increased boost pressure." },
+          {
+            name: "MHD Wireless Flashing Adapter & License",
+            brand: "MHD Tuning",
+            price: "$250 - $400",
+          },
+          {
+            name: "Dual Cone Intake (DCI) Upgrade",
+            brand: "Burger Tuning (BMS)",
+            price: "$100 - $150",
+          },
+          {
+            name: "Aluminum Chargepipe with TiAL Blow-Off Valve",
+            brand: "VRSF",
+            price: "$250 - $350",
+            note: "Replaces the fragile OEM plastic pipe, which will instantly blow apart on increased boost pressure.",
+          },
         ],
       },
       {
         id: 2,
         code: "Stage 2",
         title: "Thermal Drop & High Flow Downpipes",
-        subtitle: "The restrictive factory catalytic converters trap immense heat right next to the engine blocks. Swap them out to safely increase fuel scaling.",
+        subtitle:
+          "The restrictive factory catalytic converters trap immense heat right next to the engine blocks. Swap them out to safely increase fuel scaling.",
         power: "400–430 crank hp",
         torque: "+180–210 Nm",
         parts: [
           { name: "3-inch Stainless Steel Catless Downpipes", brand: "VRSF", price: "$350 - $500" },
-          { name: "7.5-inch High-Density Stepped Intercooler", brand: "VRSF / ARM Motorsports", price: "$450 - $650" },
-          { name: "Low-Pressure Fuel Pump Upgrade (Walbro 450)", brand: "TI Automotive / Fuel-It", price: "$250 - $400", note: "Ensures the fueling infrastructure doesn't lean out on high-load requests." },
+          {
+            name: "7.5-inch High-Density Stepped Intercooler",
+            brand: "VRSF / ARM Motorsports",
+            price: "$450 - $650",
+          },
+          {
+            name: "Low-Pressure Fuel Pump Upgrade (Walbro 450)",
+            brand: "TI Automotive / Fuel-It",
+            price: "$250 - $400",
+            note: "Ensures the fueling infrastructure doesn't lean out on high-load requests.",
+          },
         ],
       },
       {
         id: 3,
         code: "Stage 3",
         title: "Upgraded Twins or Single-Turbo Conversion",
-        subtitle: "The factory small-frame turbos cannot hold boost past 5,500 rpm. Upgrade to larger twin cores or structural top-mount single turbo arrays.",
+        subtitle:
+          "The factory small-frame turbos cannot hold boost past 5,500 rpm. Upgrade to larger twin cores or structural top-mount single turbo arrays.",
         power: "550–700+ crank hp",
         torque: "+300–400 Nm",
         parts: [
-          { name: "N54 Top Mount Single Turbo System (6266 Gen2)", brand: "Doc Race", price: "$4,500 - $6,000", note: "Converts the twin layout to a massive single wheel for endless top-end acceleration pull." },
-          { name: "Reflex Motoring Advanced Fuel Controller", brand: "Motiv", price: "$700 - $900", note: "Handles auxiliary controller sequences to fire secondary port injection fuel rails safely." },
-          { name: "Twin-Disc Performance Clutch Kit", brand: "Spec Clutch / Clutch Masters", price: "$1,200 - $1,600" },
+          {
+            name: "N54 Top Mount Single Turbo System (6266 Gen2)",
+            brand: "Doc Race",
+            price: "$4,500 - $6,000",
+            note: "Converts the twin layout to a massive single wheel for endless top-end acceleration pull.",
+          },
+          {
+            name: "Reflex Motoring Advanced Fuel Controller",
+            brand: "Motiv",
+            price: "$700 - $900",
+            note: "Handles auxiliary controller sequences to fire secondary port injection fuel rails safely.",
+          },
+          {
+            name: "Twin-Disc Performance Clutch Kit",
+            brand: "Spec Clutch / Clutch Masters",
+            price: "$1,200 - $1,600",
+          },
         ],
       },
     ],
@@ -776,21 +1042,46 @@ export const CARS: Car[] = [
     drivetrain: "6-speed dual-clutch (GR6)",
     redline: "7,100 rpm",
     maintenance: [
-      { name: "GR6 Transmission Fluid Service", brand: "Dodson Motorsport / Motul", price: "$500 - $800", note: "Crucial service. The GR6 fluid degrades quickly under launch control and track conditions." },
-      { name: "Bellhousing Rattle Fix / Bearing Housing", brand: "Litchfield / AMS", price: "$600 - $1,000", note: "The factory bellhousing shaft bearing wears out, causing a loud idle rattle." },
-      { name: "High-Carbon Brake Rotors", brand: "Alcon / AP Racing", price: "$1,500 - $2,500", note: "The heavy R35 chassis notoriously cracks OEM drilled rotors under track abuse." },
+      {
+        name: "GR6 Transmission Fluid Service",
+        brand: "Dodson Motorsport / Motul",
+        price: "$500 - $800",
+        note: "Crucial service. The GR6 fluid degrades quickly under launch control and track conditions.",
+      },
+      {
+        name: "Bellhousing Rattle Fix / Bearing Housing",
+        brand: "Litchfield / AMS",
+        price: "$600 - $1,000",
+        note: "The factory bellhousing shaft bearing wears out, causing a loud idle rattle.",
+      },
+      {
+        name: "High-Carbon Brake Rotors",
+        brand: "Alcon / AP Racing",
+        price: "$1,500 - $2,500",
+        note: "The heavy R35 chassis notoriously cracks OEM drilled rotors under track abuse.",
+      },
     ],
     stages: [
       {
         id: 1,
         code: "Stage 1",
         title: "Breathing & Mapping",
-        subtitle: "The factory tune is conservative. Uncorking the exhaust Y-pipe and recalibrating the ECU yields massive improvements in mid-range punch.",
+        subtitle:
+          "The factory tune is conservative. Uncorking the exhaust Y-pipe and recalibrating the ECU yields massive improvements in mid-range punch.",
         power: "590–600 crank hp",
         torque: "+100–120 Nm",
         parts: [
-          { name: "EcuTek / COBB Pro-Tune", brand: "EcuTek / COBB Tuning", price: "$1,000 - $1,800" },
-          { name: "90mm Stainless Steel Y-Pipe", brand: "Litchfield / ETS", price: "$600 - $1,000", note: "Removes the restrictive secondary catalytic converters." },
+          {
+            name: "EcuTek / COBB Pro-Tune",
+            brand: "EcuTek / COBB Tuning",
+            price: "$1,000 - $1,800",
+          },
+          {
+            name: "90mm Stainless Steel Y-Pipe",
+            brand: "Litchfield / ETS",
+            price: "$600 - $1,000",
+            note: "Removes the restrictive secondary catalytic converters.",
+          },
           { name: "High-Flow Drop-In Air Filters", brand: "K&N / BMC", price: "$100 - $180" },
         ],
       },
@@ -798,28 +1089,47 @@ export const CARS: Car[] = [
         id: 2,
         code: "Stage 2",
         title: "Full Exhaust & E85 Flex Fuel",
-        subtitle: "Maxing out the stock turbochargers requires more fuel. Switching to an E85 blend unlocks the true limit of the factory rotating assembly.",
+        subtitle:
+          "Maxing out the stock turbochargers requires more fuel. Switching to an E85 blend unlocks the true limit of the factory rotating assembly.",
         power: "640–660 crank hp",
         torque: "+180–220 Nm",
         note: "This torque level is the generally accepted safe limit for the stock GR6 transmission clutches and factory connecting rods.",
         parts: [
-          { name: "Flex Fuel Kit + Custom Calibration", brand: "Visconti / Cobb", price: "$1,200 - $1,800" },
+          {
+            name: "Flex Fuel Kit + Custom Calibration",
+            brand: "Visconti / Cobb",
+            price: "$1,200 - $1,800",
+          },
           { name: "1050cc Injectors", brand: "Injector Dynamics (ID1050x)", price: "$750 - $900" },
           { name: "Twin High-Flow Fuel Pumps", brand: "Walbro / ASNU", price: "$300 - $500" },
-          { name: "3-inch to 3.5-inch Turbo-Back Exhaust", brand: "Titanium / ETS", price: "$2,500 - $4,500" },
+          {
+            name: "3-inch to 3.5-inch Turbo-Back Exhaust",
+            brand: "Titanium / ETS",
+            price: "$2,500 - $4,500",
+          },
         ],
       },
       {
         id: 3,
         code: "Stage 3",
         title: "Hybrid Turbos & Built GR6",
-        subtitle: "To push past 700hp safely, you must upgrade the turbochargers and physically rebuild the transmission with increased clutch counts.",
+        subtitle:
+          "To push past 700hp safely, you must upgrade the turbochargers and physically rebuild the transmission with increased clutch counts.",
         power: "800–850+ crank hp",
         torque: "+350–400 Nm",
         note: "Pushing past 650 lb-ft (880 Nm) of torque heavily risks bending the factory VR38 connecting rods. A forged bottom-end is recommended.",
         parts: [
-          { name: "Alpha 9 / Pure1000 Turbo Upgrade", brand: "AMS Performance / Pure Turbos", price: "$7,000 - $10,000" },
-          { name: "Sportsman GR6 Transmission Build", brand: "Dodson Motorsport / ShepTrans", price: "$6,000 - $12,000", note: "Upgraded clutch packs, billet baskets, and reinforced gearsets to hold the torque." },
+          {
+            name: "Alpha 9 / Pure1000 Turbo Upgrade",
+            brand: "AMS Performance / Pure Turbos",
+            price: "$7,000 - $10,000",
+          },
+          {
+            name: "Sportsman GR6 Transmission Build",
+            brand: "Dodson Motorsport / ShepTrans",
+            price: "$6,000 - $12,000",
+            note: "Upgraded clutch packs, billet baskets, and reinforced gearsets to hold the torque.",
+          },
           { name: "Race Front Mount Intercooler", brand: "ETS / AMS", price: "$2,000 - $3,500" },
         ],
       },
@@ -844,49 +1154,102 @@ export const CARS: Car[] = [
     drivetrain: "10-speed automatic (10R80) · 6-speed manual (MT82)",
     redline: "7,500 rpm",
     maintenance: [
-      { name: "Billet Oil Pump Gears (OPG) & Crank Sprocket", brand: "Boundary / TSS", price: "$350 - $500", note: "Mandatory insurance before adding a supercharger or revving past 7,800 rpm to prevent engine failure." },
-      { name: "5W-50 Synthetic Oil Upgrade", brand: "Amsoil / Motul", price: "$100 - $140", note: "Factory 5W-20 is too thin for heavy track abuse or forced induction setups." },
-      { name: "MT82 Transmission Fluid + Shifter Bracket", brand: "BG Syncro Shift / Barton", price: "$150 - $250", note: "Fixes the infamous high-RPM lockout issues on manual cars." },
+      {
+        name: "Billet Oil Pump Gears (OPG) & Crank Sprocket",
+        brand: "Boundary / TSS",
+        price: "$350 - $500",
+        note: "Mandatory insurance before adding a supercharger or revving past 7,800 rpm to prevent engine failure.",
+      },
+      {
+        name: "5W-50 Synthetic Oil Upgrade",
+        brand: "Amsoil / Motul",
+        price: "$100 - $140",
+        note: "Factory 5W-20 is too thin for heavy track abuse or forced induction setups.",
+      },
+      {
+        name: "MT82 Transmission Fluid + Shifter Bracket",
+        brand: "BG Syncro Shift / Barton",
+        price: "$150 - $250",
+        note: "Fixes the infamous high-RPM lockout issues on manual cars.",
+      },
     ],
     stages: [
       {
         id: 1,
         code: "Stage 1",
         title: "E85 Calibration & Induction",
-        subtitle: "The Gen 3 Coyote has a high 12.0:1 compression ratio, meaning it gains massive power simply from switching to E85 fuel and a calibration.",
+        subtitle:
+          "The Gen 3 Coyote has a high 12.0:1 compression ratio, meaning it gains massive power simply from switching to E85 fuel and a calibration.",
         power: "500–515 crank hp",
         torque: "+40–50 Nm",
         parts: [
           { name: "HP Tuners Custom E85 Tune", brand: "Lund Racing / PBM", price: "$700 - $900" },
-          { name: "Cold Air Intake (120mm)", brand: "JLT Performance / PMAS", price: "$350 - $450" },
-          { name: "Axle-Back Exhaust", brand: "Corsa / Borla", price: "$800 - $1,400", note: "Fixes the muted factory exhaust note without causing excessive drone." },
+          {
+            name: "Cold Air Intake (120mm)",
+            brand: "JLT Performance / PMAS",
+            price: "$350 - $450",
+          },
+          {
+            name: "Axle-Back Exhaust",
+            brand: "Corsa / Borla",
+            price: "$800 - $1,400",
+            note: "Fixes the muted factory exhaust note without causing excessive drone.",
+          },
         ],
       },
       {
         id: 2,
         code: "Stage 2",
         title: "Full Exhaust & Manifold Flow",
-        subtitle: "Removing the factory catalytic converters and opening up the exhaust manifolds allows the V8 to breathe efficiently at the top of the rev range.",
+        subtitle:
+          "Removing the factory catalytic converters and opening up the exhaust manifolds allows the V8 to breathe efficiently at the top of the rev range.",
         power: "530–545 crank hp",
         torque: "+60–70 Nm",
         parts: [
-          { name: "1-7/8\" or 2\" Long Tube Headers", brand: "Kooks / Stainless Works", price: "$1,500 - $2,200" },
-          { name: "Ported 2018+ Intake Manifold", brand: "Brett Barber / Steeda", price: "$400 - $600", note: "Maintains low-end torque while drastically increasing airflow above 6,000 rpm." },
-          { name: "Stop the Hop Suspension Kit", brand: "Steeda", price: "$300 - $450", note: "Crucial IRS subframe bracing to eliminate extreme wheel hop under hard acceleration." },
+          {
+            name: '1-7/8" or 2" Long Tube Headers',
+            brand: "Kooks / Stainless Works",
+            price: "$1,500 - $2,200",
+          },
+          {
+            name: "Ported 2018+ Intake Manifold",
+            brand: "Brett Barber / Steeda",
+            price: "$400 - $600",
+            note: "Maintains low-end torque while drastically increasing airflow above 6,000 rpm.",
+          },
+          {
+            name: "Stop the Hop Suspension Kit",
+            brand: "Steeda",
+            price: "$300 - $450",
+            note: "Crucial IRS subframe bracing to eliminate extreme wheel hop under hard acceleration.",
+          },
         ],
       },
       {
         id: 3,
         code: "Stage 3",
         title: "Positive Displacement Supercharger",
-        subtitle: "The Coyote architecture is legendary for handling boost. Bolting a massive twin-screw supercharger on top yields hypercar power levels on a stock engine.",
+        subtitle:
+          "The Coyote architecture is legendary for handling boost. Bolting a massive twin-screw supercharger on top yields hypercar power levels on a stock engine.",
         power: "750–800+ crank hp",
         torque: "+300–350 Nm",
         note: "Ensure Billet OPG and Crank Sprocket are installed. The 10R80 automatic holds this power well, but the MT82 manual will require a twin-disc clutch immediately.",
         parts: [
-          { name: "Gen 5 3.0L Supercharger Kit", brand: "Whipple Superchargers", price: "$8,500 - $9,800" },
-          { name: "1000cc Fuel Injectors", brand: "Injector Dynamics (ID1050x)", price: "$800 - $950" },
-          { name: "Boost-a-Pump (BAP) or Dual Pump Return System", brand: "JMS / Fore Innovations", price: "$400 - $1,800" },
+          {
+            name: "Gen 5 3.0L Supercharger Kit",
+            brand: "Whipple Superchargers",
+            price: "$8,500 - $9,800",
+          },
+          {
+            name: "1000cc Fuel Injectors",
+            brand: "Injector Dynamics (ID1050x)",
+            price: "$800 - $950",
+          },
+          {
+            name: "Boost-a-Pump (BAP) or Dual Pump Return System",
+            brand: "JMS / Fore Innovations",
+            price: "$400 - $1,800",
+          },
         ],
       },
     ],
@@ -910,21 +1273,45 @@ export const CARS: Car[] = [
     drivetrain: "5-speed manual · 6-speed SST (Twin-Clutch)",
     redline: "7,000 rpm",
     maintenance: [
-      { name: "AYC / ACD Pump Relocation & Rebuild", brand: "OEM / Custom", price: "$300 - $500", note: "The factory pump is located behind the rear wheel and fails due to corrosion. Relocate to the trunk." },
-      { name: "SST Transmission Fluid & Filter (For automatics)", brand: "Castrol Transmax / SSP", price: "$250 - $400", note: "The SST transmission will slip and fail if fluid is not changed religiously every 15k miles." },
-      { name: "Upgraded Fuel Pump Relay", brand: "Mitsubishi OEM (Black Relay)", price: "$20 - $40", note: "The factory relay fails, causing a lean condition that can blow the engine." },
+      {
+        name: "AYC / ACD Pump Relocation & Rebuild",
+        brand: "OEM / Custom",
+        price: "$300 - $500",
+        note: "The factory pump is located behind the rear wheel and fails due to corrosion. Relocate to the trunk.",
+      },
+      {
+        name: "SST Transmission Fluid & Filter (For automatics)",
+        brand: "Castrol Transmax / SSP",
+        price: "$250 - $400",
+        note: "The SST transmission will slip and fail if fluid is not changed religiously every 15k miles.",
+      },
+      {
+        name: "Upgraded Fuel Pump Relay",
+        brand: "Mitsubishi OEM (Black Relay)",
+        price: "$20 - $40",
+        note: "The factory relay fails, causing a lean condition that can blow the engine.",
+      },
     ],
     stages: [
       {
         id: 1,
         code: "Stage 1",
         title: "Boost Control & Mapping",
-        subtitle: "The factory ECU tune runs incredibly rich and the boost control is sloppy. A simple 3-port solenoid and tune transforms the power delivery.",
+        subtitle:
+          "The factory ECU tune runs incredibly rich and the boost control is sloppy. A simple 3-port solenoid and tune transforms the power delivery.",
         power: "340–350 crank hp",
         torque: "+60–80 Nm",
         parts: [
-          { name: "OpenSource / Cobb Accessport Tune", brand: "Tactrix / COBB", price: "$500 - $750" },
-          { name: "3-Port Electronic Boost Control Solenoid", brand: "Grimmspeed / MAC", price: "$120 - $160" },
+          {
+            name: "OpenSource / Cobb Accessport Tune",
+            brand: "Tactrix / COBB",
+            price: "$500 - $750",
+          },
+          {
+            name: "3-Port Electronic Boost Control Solenoid",
+            brand: "Grimmspeed / MAC",
+            price: "$120 - $160",
+          },
           { name: "Drop-in Panel Air Filter", brand: "K&N / Cosworth", price: "$60 - $90" },
         ],
       },
@@ -932,28 +1319,53 @@ export const CARS: Car[] = [
         id: 2,
         code: "Stage 2",
         title: "Airflow Liberation",
-        subtitle: "Replacing the restrictive factory exhaust system and intercooler piping allows the stock MHI turbo to work much more efficiently.",
+        subtitle:
+          "Replacing the restrictive factory exhaust system and intercooler piping allows the stock MHI turbo to work much more efficiently.",
         power: "370–390 crank hp",
         torque: "+100–120 Nm",
         parts: [
-          { name: "3-inch Turbo-Back Exhaust System", brand: "ETS / AMS", price: "$1,200 - $1,800" },
-          { name: "Upper & Lower Intercooler Piping", brand: "ETS / MAPerformance", price: "$400 - $600", note: "Replaces the factory rubber hoses which expand and balloon under high boost." },
-          { name: "Upgraded Metal Blow-Off Valve (MR Style)", brand: "OEM Mitsubishi / Turbosmart", price: "$150 - $250", note: "The plastic BOV on early GSR models leaks boost above 18psi." },
+          {
+            name: "3-inch Turbo-Back Exhaust System",
+            brand: "ETS / AMS",
+            price: "$1,200 - $1,800",
+          },
+          {
+            name: "Upper & Lower Intercooler Piping",
+            brand: "ETS / MAPerformance",
+            price: "$400 - $600",
+            note: "Replaces the factory rubber hoses which expand and balloon under high boost.",
+          },
+          {
+            name: "Upgraded Metal Blow-Off Valve (MR Style)",
+            brand: "OEM Mitsubishi / Turbosmart",
+            price: "$150 - $250",
+            note: "The plastic BOV on early GSR models leaks boost above 18psi.",
+          },
         ],
       },
       {
         id: 3,
         code: "Stage 3",
         title: "E85 & Fuel System Overhaul",
-        subtitle: "To max out the stock turbo, switch to ethanol. The torque output must be capped carefully by the tuner to prevent the factory connecting rods from snapping.",
+        subtitle:
+          "To max out the stock turbo, switch to ethanol. The torque output must be capped carefully by the tuner to prevent the factory connecting rods from snapping.",
         power: "420–440 crank hp",
         torque: "+140–160 Nm",
         note: "Tuners will intentionally shape the torque curve to stay below 350 wtq (approx 470 Nm at crank) to save the stock block.",
         parts: [
-          { name: "1300cc Fuel Injectors", brand: "Injector Dynamics (ID1300x)", price: "$950 - $1,100" },
+          {
+            name: "1300cc Fuel Injectors",
+            brand: "Injector Dynamics (ID1300x)",
+            price: "$950 - $1,100",
+          },
           { name: "340lph In-Tank Fuel Pump", brand: "AEM / DeatschWerks", price: "$120 - $180" },
           { name: "Flex Fuel Kit", brand: "Driven Fab / Cobb", price: "$500 - $700" },
-          { name: "SST Upgraded Clutch Packs (If Automatic)", brand: "SSP Performance / Dodson", price: "$1,500 - $2,500", note: "The factory SST clutches will slip heavily at this power level." },
+          {
+            name: "SST Upgraded Clutch Packs (If Automatic)",
+            brand: "SSP Performance / Dodson",
+            price: "$1,500 - $2,500",
+            note: "The factory SST clutches will slip heavily at this power level.",
+          },
         ],
       },
     ],
@@ -977,49 +1389,222 @@ export const CARS: Car[] = [
     drivetrain: "6-speed manual",
     redline: "7,100 rpm",
     maintenance: [
-      { name: "Billet Oil Pickup Tube & Baffle", brand: "Killer B Motorsport", price: "$350 - $450", note: "The factory brazed oil pickup tube is prone to cracking, causing immediate oil starvation and engine death." },
-      { name: "Air / Oil Separator (AOS)", brand: "IAG Performance", price: "$400 - $500", note: "Prevents oil vapors from re-entering the intake tract, which lowers fuel octane and causes ringland-killing detonation." },
-      { name: "Cylinder 4 Cooling Mod", brand: "Getadomtune", price: "$80 - $120", note: "Improves coolant flow to the hottest cylinder on the EJ block to prevent localized overheating." },
+      {
+        name: "Billet Oil Pickup Tube & Baffle",
+        brand: "Killer B Motorsport",
+        price: "$350 - $450",
+        note: "The factory brazed oil pickup tube is prone to cracking, causing immediate oil starvation and engine death.",
+      },
+      {
+        name: "Air / Oil Separator (AOS)",
+        brand: "IAG Performance",
+        price: "$400 - $500",
+        note: "Prevents oil vapors from re-entering the intake tract, which lowers fuel octane and causes ringland-killing detonation.",
+      },
+      {
+        name: "Cylinder 4 Cooling Mod",
+        brand: "Getadomtune",
+        price: "$80 - $120",
+        note: "Improves coolant flow to the hottest cylinder on the EJ block to prevent localized overheating.",
+      },
     ],
     stages: [
       {
         id: 1,
         code: "Stage 1",
         title: "Smoothing the Curve",
-        subtitle: "The factory Subaru tune is notorious for a sudden burst of boost followed by a massive dip in power. A reflash smooths this out completely.",
+        subtitle:
+          "The factory Subaru tune is notorious for a sudden burst of boost followed by a massive dip in power. A reflash smooths this out completely.",
         power: "320–330 crank hp",
         torque: "+30–40 Nm",
         parts: [
           { name: "Accessport V3", brand: "COBB Tuning", price: "$675 - $725" },
-          { name: "SF Cold Air Intake + Airbox", brand: "COBB Tuning / Grimmspeed", price: "$350 - $450" },
+          {
+            name: "SF Cold Air Intake + Airbox",
+            brand: "COBB Tuning / Grimmspeed",
+            price: "$350 - $450",
+          },
         ],
       },
       {
         id: 2,
         code: "Stage 2",
         title: "Downpipe & Boost Control",
-        subtitle: "Removing the heavy restriction directly behind the turbo lowers exhaust gas temperatures and allows the VF48 turbo to spool much earlier.",
+        subtitle:
+          "Removing the heavy restriction directly behind the turbo lowers exhaust gas temperatures and allows the VF48 turbo to spool much earlier.",
         power: "350–365 crank hp",
         torque: "+70–90 Nm",
         parts: [
-          { name: "Catted Downpipe (GESi)", brand: "Grimmspeed / COBB", price: "$800 - $1,100", note: "Modern tuning regulations require high-quality GESi catalytic converters to prevent check engine lights." },
-          { name: "Cat-Back Exhaust", brand: "Invidia Q300 / Tomei Expreme Ti", price: "$800 - $1,400" },
-          { name: "3-Port Electronic Boost Control Solenoid", brand: "Grimmspeed", price: "$130 - $170", note: "Fixes boost spiking issues present with the factory 2-port bleeder system." },
+          {
+            name: "Catted Downpipe (GESi)",
+            brand: "Grimmspeed / COBB",
+            price: "$800 - $1,100",
+            note: "Modern tuning regulations require high-quality GESi catalytic converters to prevent check engine lights.",
+          },
+          {
+            name: "Cat-Back Exhaust",
+            brand: "Invidia Q300 / Tomei Expreme Ti",
+            price: "$800 - $1,400",
+          },
+          {
+            name: "3-Port Electronic Boost Control Solenoid",
+            brand: "Grimmspeed",
+            price: "$130 - $170",
+            note: "Fixes boost spiking issues present with the factory 2-port bleeder system.",
+          },
         ],
       },
       {
         id: 3,
         code: "Stage 3",
         title: "Fueling Upgrades & Flex Fuel",
-        subtitle: "The EJ257 is highly susceptible to detonation on pump gas. E85 fuel is the ultimate safety and power upgrade for this engine.",
+        subtitle:
+          "The EJ257 is highly susceptible to detonation on pump gas. E85 fuel is the ultimate safety and power upgrade for this engine.",
         power: "410–430 crank hp",
         torque: "+130–160 Nm",
         note: "This is the generally accepted limit of the factory cast pistons (ringlands). Pushing further requires a forged shortblock.",
         parts: [
           { name: "Flex Fuel Sensor Kit", brand: "COBB Tuning", price: "$700 - $900" },
           { name: "1050cc Top Feed Injectors", brand: "Injector Dynamics", price: "$650 - $750" },
-          { name: "AEM 340lph Fuel Pump + FPR", brand: "AEM / Cobb", price: "$300 - $450", note: "An upgraded fuel pressure regulator (FPR) is required to fix the 'stumble' issue around 3,000 RPM." },
-          { name: "Upgraded Top Mount Intercooler (TMIC)", brand: "Grimmspeed", price: "$900 - $1,100", note: "The plastic end-tanks on the factory intercooler will separate under higher boost pressures." },
+          {
+            name: "AEM 340lph Fuel Pump + FPR",
+            brand: "AEM / Cobb",
+            price: "$300 - $450",
+            note: "An upgraded fuel pressure regulator (FPR) is required to fix the 'stumble' issue around 3,000 RPM.",
+          },
+          {
+            name: "Upgraded Top Mount Intercooler (TMIC)",
+            brand: "Grimmspeed",
+            price: "$900 - $1,100",
+            note: "The plastic end-tanks on the factory intercooler will separate under higher boost pressures.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "i30-n",
+    index: "04",
+    make: "Hyundai",
+    model: "i30 N",
+    chassis: "PD",
+    year: "2017 – Present",
+    tagline:
+      "The hot hatch that put N on the map. The Theta II 2.0T is a torque monster, but the factory high-pressure fuel pump (HPFP) will ruin your fun the moment you turn up the boost.",
+    image: "/hyundai.jpg",
+    engine: "2.0 Theta II T-GDi",
+    displacement: "2.0L I4 Turbo",
+    layout: "Front-engine, FWD",
+    stockHp: "275 hp",
+    stockTorque: "353 Nm",
+    weight: "1429 kg",
+    drivetrain: "6-speed manual / 8-speed Wet DCT, e-LSD",
+    redline: "6,750 rpm",
+    maintenance: [
+      { name: "Upgraded Spark Plugs", brand: "HKS M45XL", price: "$100 - $140" },
+      { name: "Baffled Oil Catch Can", brand: "Forge Motorsport", price: "$200 - $250" },
+      {
+        name: "Upgraded High-Pressure Fuel Pump (HPFP)",
+        brand: "LOBA / Sonata OEM",
+        price: "$400 - $800",
+      },
+      { name: "Track Brake Pads", brand: "Pagid RSL29", price: "$300 - $400" },
+    ],
+    stages: [
+      {
+        id: 1,
+        code: "Stage 1",
+        title: "Breathing & Optimization",
+        subtitle:
+          "Wake up the Theta II with better airflow and an ECU remap. The stock exhaust is already fantastic, just remove the restrictions in front of it.",
+        power: "310–330 hp",
+        torque: "+60–80 Nm",
+        note: "Always gap your upgraded spark plugs down to 0.6mm - 0.65mm before flashing a Stage 1 tune to prevent spark blowout under boost.",
+        parts: [
+          { name: "Open Cone Intake", brand: "Pipercross", price: "$250 - $350" },
+          {
+            name: "Carbon Intake System",
+            brand: "Forge Motorsport",
+            price: "$400 - $550",
+            note: "Better thermal management.",
+          },
+          { name: "Turbo Inlet Adaptor", brand: "Courtenay Sport", price: "$100 - $150" },
+          {
+            name: "Piggyback Tuning Box",
+            brand: "RaceChip GTS",
+            price: "$500 - $650",
+            note: "Retains factory warranty.",
+          },
+          {
+            name: "Custom ECU Remap",
+            brand: "Various",
+            price: "$600 - $900",
+            note: "Better drivability and linear power delivery.",
+          },
+        ],
+      },
+      {
+        id: 2,
+        code: "Stage 2",
+        title: "Thermal Management & Flow",
+        subtitle:
+          "To push past 330 hp safely, you need to manage heat. A bigger intercooler and a high-flow downpipe are mandatory.",
+        power: "340–360 hp",
+        torque: "+100–120 Nm",
+        note: "The stock HPFP maxes out around 340 hp. Do not attempt Stage 2 without upgrading it, or you will run lean.",
+        parts: [
+          { name: "Competition Intercooler Kit", brand: "Wagner Tuning", price: "$800 - $1,000" },
+          {
+            name: "High-Flow Catted Downpipe",
+            brand: "RPM Performance",
+            price: "$700 - $900",
+            note: "Essential for reducing exhaust backpressure.",
+          },
+          { name: "Flex Pipe Upgrade", brand: "Forge Motorsport", price: "$150 - $250" },
+          { name: "Upgraded HPFP", brand: "LOBA Motorsport", price: "$750 - $900" },
+          {
+            name: "Upgraded Clutch (Manual)",
+            brand: "Sachs Performance",
+            price: "$700 - $900",
+            note: "The stock manual clutch starts slipping around 450 Nm.",
+          },
+        ],
+      },
+      {
+        id: 3,
+        code: "Stage 3",
+        title: "Hybrid Turbo & Big Torque",
+        subtitle:
+          "Maxing out the factory block limits. A hybrid turbo gives you top-end pull that the stock snail simply cannot provide.",
+        power: "400–430+ hp",
+        torque: "+150–180 Nm",
+        note: "Keep torque capped around 500-520 Nm unless you plan on putting forged rods in the block. The factory connecting rods are the weak point.",
+        parts: [
+          { name: "L400 Hybrid Turbo", brand: "Littco", price: "$1,400 - $1,800" },
+          {
+            name: "Water/Methanol Injection (WMI)",
+            brand: "AEM",
+            price: "$500 - $700",
+            note: "Keeps intake temps icy and adds fueling headroom.",
+          },
+          {
+            name: "Upgraded Low-Pressure Fuel Pump (LPFP)",
+            brand: "DeatschWerks",
+            price: "$200 - $300",
+          },
+          {
+            name: "Forged Connecting Rods",
+            brand: "ZRP",
+            price: "$500 - $700",
+            note: "Required if pushing past 500 Nm of torque.",
+          },
+          { name: "Forged Pistons", brand: "Wössner", price: "$650 - $850" },
+          {
+            name: "Polyurethane Motor Mounts",
+            brand: "Powerflex",
+            price: "$150 - $250",
+            note: "Eliminates wheel hop under hard acceleration.",
+          },
         ],
       },
     ],

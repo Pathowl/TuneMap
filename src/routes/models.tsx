@@ -41,7 +41,7 @@ function Models() {
     <section className="mx-auto max-w-[1200px] px-6 pt-14 pb-24 md:px-10 md:pt-20">
       <div className="mb-8 border-b border-border/60 pb-4">
         <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-muted-foreground">
-          § 01 · Models
+          01 · Models
         </div>
         <h1 className="mt-2 font-display text-4xl font-normal text-foreground md:text-5xl">
           Select your <span className="italic text-neon">chassis</span>.
@@ -94,7 +94,7 @@ function Models() {
                     key={car.slug}
                     to="/cars/$slug"
                     params={{ slug: car.slug }}
-                    className="group relative aspect-[4/3] overflow-hidden rounded-lg border border-border bg-card transition-all duration-500 hover:border-accent hover:shadow-[0_0_60px_-15px_var(--pink)]"
+                    className="group relative aspect-[4/3] overflow-hidden rounded-lg border border-border bg-card transition-all duration-500 hover:border-accent "
                   >
                     <img
                       src={car.image}

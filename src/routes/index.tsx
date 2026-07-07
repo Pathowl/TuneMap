@@ -11,7 +11,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Pick a chassis, follow the stages, source the parts. An interactive tuning roadmap for the cars people actually build.",
+          "Technical build sheets for proven chassis. Select a platform to load prerequisites and required hardware.",
       },
       { property: "og:title", content: "Tunemap — Interactive Build Roadmap" },
       {
@@ -45,7 +45,7 @@ function Index() {
           <div className="max-w-2xl">
             <Reveal as="div">
               <div className="font-mono text-[10px] uppercase tracking-[0.4em] text-muted-foreground">
-                § Interactive build roadmap
+                Interactive build roadmap
               </div>
             </Reveal>
 
@@ -59,8 +59,7 @@ function Index() {
 
             <Reveal delay={280}>
               <p className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground md:text-lg">
-                Pick a chassis. Follow the stages. Source the parts. A living roadmap built the way
-                people actually build cars.
+                Technical build sheets for proven chassis. Select a platform to load prerequisites and required hardware.
               </p>
             </Reveal>
 
@@ -92,7 +91,7 @@ function Index() {
             <div className="flex items-end justify-between border-b border-border/60 pb-4">
               <div>
                 <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-muted-foreground">
-                  § 02 · Featured builds
+                  02 · Featured builds
                 </div>
                 <h2 className="mt-2 font-display text-3xl font-normal text-foreground md:text-5xl">
                   Three chassis to start with<span className="text-neon">.</span>
@@ -113,7 +112,7 @@ function Index() {
                 <Link
                   to="/cars/$slug"
                   params={{ slug: car.slug }}
-                  className="group relative block aspect-[4/5] overflow-hidden rounded-lg border border-border bg-card transition-all duration-500 hover:border-accent hover:shadow-[0_0_50px_-15px_var(--pink)]"
+                  className="group relative block aspect-[4/5] overflow-hidden rounded-lg border border-border bg-card transition-all duration-500 hover:border-accent"
                 >
                   <img
                     src={car.image}
@@ -148,7 +147,7 @@ function Index() {
         <div className="mx-auto max-w-[1100px] px-6 md:px-10">
           <Reveal>
             <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-muted-foreground">
-              § 03 · How it works
+              03 · How it works
             </div>
           </Reveal>
           <Reveal delay={100}>

@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound, useRouter } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, Users, ExternalLink } from "lucide-react";
-import { getCar, CARS, type Car, type Part } from "@/lib/cars";
+import { getCar, CARS, type Car, type Part, type Stage } from "@/lib/cars";
 import {
   Accordion,
   AccordionContent,
@@ -17,8 +17,13 @@ export const Route = createFileRoute("/cars/$slug")({
   head: ({ loaderData }) => ({
     meta: loaderData
       ? [
-          { title: `${loaderData.make} ${loaderData.model} (${loaderData.chassis}) — Tunemap Build Guide` },
-          { name: "description", content: `${loaderData.tagline} Stage 1–3 tuning roadmap for the ${loaderData.chassis}.` },
+          {
+            title: `${loaderData.make} ${loaderData.model} (${loaderData.chassis}) — Tunemap Build Guide`,
+          },
+          {
+            name: "description",
+            content: `${loaderData.tagline} Stage 1–3 tuning roadmap for the ${loaderData.chassis}.`,
+          },
           { property: "og:title", content: `${loaderData.model} ${loaderData.chassis} — Tunemap` },
           { property: "og:description", content: loaderData.tagline },
           { property: "og:image", content: loaderData.image },
@@ -61,9 +66,37 @@ export const Route = createFileRoute("/cars/$slug")({
 });
 
 function CarPage() {
+  type StageZero = {
+    id: 0;
+    code: string;
+    title: string;
+    subtitle: string;
+    power: string;
+    torque: string;
+    note: string;
+    parts: Part[];
+  };
+
   const car = Route.useLoaderData();
-  const nextCar =
-    CARS[(CARS.findIndex((c) => c.slug === car.slug) + 1) % CARS.length];
+  const nextCar = CARS[(CARS.findIndex((c) => c.slug === car.slug) + 1) % CARS.length];
+  const stageIcons: Record<number, string> = {
+    1: "/stage1.png",
+    2: "/stage2.png",
+    3: "/stage3.png",
+  };
+
+  const stageZero: StageZero = {
+    id: 0,
+    code: "Stage 0",
+    title: "Prerequisite",
+    subtitle: "Baseline maintenance before Stage 1",
+    power: "",
+    torque: "",
+    note: "Required baseline maintenance before Stage 1.",
+    parts: car.maintenance,
+  };
+
+  const stages: Array<Stage | StageZero> = [stageZero, ...car.stages];
 
   return (
     <>
@@ -95,9 +128,7 @@ function CarPage() {
               <h1 className="mt-3 font-display text-6xl font-normal leading-[0.9] tracking-tight text-foreground md:text-7xl">
                 {car.model}
               </h1>
-              <div className="mt-2 font-display text-2xl italic text-neon">
-                {car.chassis}
-              </div>
+              <div className="mt-2 font-display text-2xl italic text-neon">{car.chassis}</div>
               <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
                 {car.tagline}
               </p>
@@ -127,7 +158,6 @@ function CarPage() {
                 <SpecItem label="Weight" value={car.weight} />
                 <SpecItem label="Redline" value={car.redline} />
               </div>
-
             </div>
 
             <div className="relative lg:col-span-7">
@@ -153,16 +183,20 @@ function CarPage() {
       </section>
 
       {/* STAGES */}
-      <section id="stages" className="relative border-t border-border/60 bg-background/40 py-20 backdrop-blur-sm">
+      <section
+        id="stages"
+        className="relative border-t border-border/60 bg-background/40 py-20 backdrop-blur-sm"
+      >
         <div className="mx-auto max-w-[1100px] px-6 md:px-10">
           <div className="mb-10 flex items-end justify-between border-b border-border/60 pb-4">
             <div>
-              <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-muted-foreground">
-                § Build stages
-              </div>
               <h2 className="mt-2 font-display text-3xl font-normal text-foreground md:text-4xl">
                 Tuning roadmap
               </h2>
+              <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-muted-foreground">
+                <br></br>
+                Estimated price is for parts only!
+              </div>
             </div>
             <div className="hidden font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground md:block">
               {car.stages.length} stages
@@ -170,98 +204,96 @@ function CarPage() {
           </div>
 
           <Accordion type="single" collapsible defaultValue="stage-1" className="w-full">
-            {car.stages.map((stage: Car["stages"][number]) => (
-              <AccordionItem
-                key={stage.id}
-                value={`stage-${stage.id}`}
-                className="border-b border-border/60"
-              >
-                <AccordionTrigger className="py-7 hover:no-underline">
-                  <div className="flex flex-1 items-start gap-6 pr-4 text-left">
-                    <div className="min-w-[64px] pt-1 font-mono text-xs uppercase tracking-[0.3em] text-neon">
-                      {stage.code}
+            {stages.map(
+              (
+                stage:
+                  | Stage
+                  | {
+                      id: 0;
+                      code: string;
+                      title: string;
+                      subtitle: string;
+                      power: string;
+                      torque: string;
+                      note: string;
+                      parts: Part[];
+                    },
+              ) => (
+                <AccordionItem
+                  key={stage.id}
+                  value={`stage-${stage.id}`}
+                  className="border-b border-border/60"
+                >
+                  <AccordionTrigger className="py-7 hover:no-underline">
+                    <div className="flex flex-1 items-start gap-6 pr-4 text-left">
+                      <div className="min-w-[72px] flex flex-col items-center gap-4 pt-1">
+                        <div className="font-mono text-xs uppercase tracking-[0.3em] text-neon">
+                          {stage.code}
+                        </div>
+                        {stage.id > 0 ? (
+                          <img
+                            src={stageIcons[stage.id]}
+                            alt={`${stage.code} icon`}
+                            className="h-16 w-16 object-contain"
+                          />
+                        ) : null}
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-sans text-2xl font-semibold text-foreground tracking-[0.06em] md:text-3xl">
+                          {stage.title}
+                        </div>
+                        <div className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground tracking-[0.2em]">
+                          {stage.subtitle}
+                        </div>
+                      </div>
+                      {stage.id > 0 ? (
+                        <div className="hidden shrink-0 text-right md:block">
+                          <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+                            Power
+                          </div>
+                          <div className="mt-1 font-mono text-sm text-foreground">
+                            {stage.power}
+                          </div>
+                          <div className="mt-3 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+                            Torque
+                          </div>
+                          <div className="mt-1 font-mono text-sm text-neon">{stage.torque}</div>
+                        </div>
+                      ) : null}
                     </div>
-                    <div className="flex-1">
-                      <div className="font-display text-2xl italic text-foreground tracking-[0.1em] md:text-3xl">
-                        {stage.title}
-                      </div>
-                      <div className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground tracking-[0.2em]">
-                        {stage.subtitle}
-                      </div>
-                    </div>
-                    <div className="hidden shrink-0 text-right md:block">
-                      <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-                        Power
-                      </div>
-                      <div className="mt-1 font-mono text-sm text-foreground">
+                  </AccordionTrigger>
+                  <AccordionContent className="pb-10">
+                    <div className="mb-6 flex flex-wrap gap-3 md:hidden">
+                      <span className="rounded border border-border bg-card/60 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.25em] text-foreground">
                         {stage.power}
-                      </div>
-                      <div className="mt-3 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-                        Torque
-                      </div>
-                      <div className="mt-1 font-mono text-sm text-neon">
+                      </span>
+                      <span className="rounded border border-border bg-card/60 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.25em] text-neon">
                         {stage.torque}
-                      </div>
+                      </span>
                     </div>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent className="pb-10">
-                  <div className="mb-6 flex flex-wrap gap-3 md:hidden">
-                    <span className="rounded border border-border bg-card/60 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.25em] text-foreground">
-                      {stage.power}
-                    </span>
-                    <span className="rounded border border-border bg-card/60 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.25em] text-neon">
-                      {stage.torque}
-                    </span>
-                  </div>
-                  {stage.note ? (
-                    <p className="mb-6 border-l-2 border-accent/60 bg-card/40 py-2 pl-4 font-mono text-xs leading-relaxed text-muted-foreground">
-                      Note — {stage.note}
-                    </p>
-                  ) : null}
-                  <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-                    {groupPartsForDisplay(stage.parts).map((item, index) =>
-                      item.kind === "alternative-group" ? (
-                        <AlternativeGroup key={`${item.title}-${index}`} title={item.title} parts={item.parts} />
-                      ) : (
-                        <PartCard key={item.part.name} part={item.part} />
-                      ),
-                    )}
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
+                    {stage.note ? (
+                      <p className="mb-6 border-l-2 border-accent/60 bg-card/40 py-2 pl-4 font-mono text-xs leading-relaxed text-muted-foreground">
+                        Note — {stage.note}
+                      </p>
+                    ) : null}
+                    <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+                      {groupPartsForDisplay(stage.parts).map((item, index) =>
+                        item.kind === "alternative-group" ? (
+                          <AlternativeGroup
+                            key={`${item.title}-${index}`}
+                            title={item.title}
+                            parts={item.parts}
+                          />
+                        ) : (
+                          <PartCard key={item.part.name} part={item.part} />
+                        ),
+                      )}
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              ),
+            )}
           </Accordion>
-
-          {/* Maintenance — small, tucked below stages */}
-          {car.maintenance.length > 0 ? (
-            <div className="mt-16 border-t border-border/60 pt-8">
-              <details className="group">
-                <summary className="flex cursor-pointer items-center justify-between gap-4 list-none">
-                  <div>
-                    <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-muted-foreground">
-                      § Prerequisite
-                    </div>
-                    <div className="mt-1 font-display text-lg italic text-foreground">
-                      Baseline maintenance before Stage 1
-                    </div>
-                  </div>
-                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground group-open:hidden">
-                    Show
-                  </span>
-                  <span className="hidden font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground group-open:inline">
-                    Hide
-                  </span>
-                </summary>
-                <div className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-2">
-                  {car.maintenance.map((p: Part) => (
-                    <PartCard key={p.name} part={p} />
-                  ))}
-                </div>
-              </details>
-            </div>
-          ) : null}
-
         </div>
       </section>
 
@@ -279,9 +311,7 @@ function CarPage() {
             <div className="mt-2 font-display text-3xl font-normal text-foreground md:text-5xl">
               {nextCar.model} <span className="italic text-neon">{nextCar.chassis}</span>
             </div>
-            <div className="mt-2 max-w-md text-sm text-muted-foreground">
-              {nextCar.tagline}
-            </div>
+            <div className="mt-2 max-w-md text-sm text-muted-foreground">{nextCar.tagline}</div>
           </div>
           <div className="hidden aspect-[4/3] w-56 shrink-0 overflow-hidden rounded-xl border border-border md:block">
             <img
@@ -301,7 +331,9 @@ function CarPage() {
 }
 
 function groupPartsForDisplay(parts: Part[]) {
-  const displayItems: Array<{ kind: "part"; part: Part } | { kind: "alternative-group"; title: string; parts: Part[] }> = [];
+  const displayItems: Array<
+    { kind: "part"; part: Part } | { kind: "alternative-group"; title: string; parts: Part[] }
+  > = [];
   let buffer: Part[] = [];
   let activeTitle: string | null = null;
 
@@ -363,9 +395,7 @@ function AlternativeGroup({ title, parts }: { title: string; parts: Part[] }) {
                   <div className="mt-1 font-mono text-sm font-medium uppercase tracking-[0.14em] text-foreground">
                     {part.name}
                   </div>
-                  <div className="mt-1 text-left text-xs text-muted-foreground">
-                    {part.brand}
-                  </div>
+                  <div className="mt-1 text-left text-xs text-muted-foreground">{part.brand}</div>
                 </div>
                 <span className="shrink-0 rounded-full border border-border/70 bg-background/70 px-2.5 py-1 font-mono text-[8px] uppercase tracking-[0.3em] text-muted-foreground">
                   Expand
@@ -389,9 +419,18 @@ function PartCard({ part }: { part: Part }) {
     part.links && part.links.length > 0
       ? part.links
       : [
-          { label: "Search on Google", url: `https://www.google.com/search?q=${encodeURIComponent(part.brand + " " + part.name)}` },
-          { label: "Find on eBay", url: `https://www.ebay.com/sch/i.html?_nkw=${encodeURIComponent(part.brand + " " + part.name)}` },
-          { label: "Summit Racing", url: `https://www.summitracing.com/search?searchTerm=${encodeURIComponent(part.brand + " " + part.name)}` },
+          {
+            label: "Search on Google",
+            url: `https://www.google.com/search?q=${encodeURIComponent(part.brand + " " + part.name)}`,
+          },
+          {
+            label: "Find on eBay",
+            url: `https://www.ebay.com/sch/i.html?_nkw=${encodeURIComponent(part.brand + " " + part.name)}`,
+          },
+          {
+            label: "Summit Racing",
+            url: `https://www.summitracing.com/search?searchTerm=${encodeURIComponent(part.brand + " " + part.name)}`,
+          },
         ];
 
   return (
