@@ -65,6 +65,23 @@ export const Route = createFileRoute("/cars/$slug")({
   },
 });
 
+// Helper function to auto-categorize parts based on keywords
+function getCategoryForPart(name: string): string {
+  const lower = name.toLowerCase();
+  
+  if (lower.match(/intake|plenum|filter|induction|popcharger/)) return "Air Intake & Induction";
+  if (lower.match(/exhaust|downpipe|header|cat-back|frontpipe|y-pipe|test pipe|overpipe|manifold/)) return "Exhaust Systems & Headers";
+  if (lower.match(/turbo|supercharger|wastegate|boost|bov/)) return "Forced Induction (Turbos & Superchargers)";
+  if (lower.match(/injector|fuel|pump|ethanol|wmi/)) return "Fuel System";
+  if (lower.match(/piston|rod|cam|stud|block mod|valve|spring|sprocket|bearing/)) return "Engine Internals & Protection";
+  if (lower.match(/clutch|flywheel|transmission|tcu|dsg|gr6|shifter|gearbox/)) return "Drivetrain & Transmission";
+  if (lower.match(/tune|flash|ecu|ecutek|hondata|accessport|ktuner|mhd|imap|calibration/)) return "Engine Management & Calibration";
+  if (lower.match(/intercooler|oil cooler|water pump|thermostat|radiator|cooling|aos|catch can/)) return "Cooling & Thermal Management";
+  if (lower.match(/coilpack|spark plug|ignition|fluid|oil|maintenance|service|pad|rotor/)) return "Maintenance & Support";
+  
+  return "General Upgrades";
+}
+
 function CarPage() {
   type StageZero = {
     id: 0;
@@ -136,13 +153,13 @@ function CarPage() {
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
                   href="#stages"
-                  className="inline-flex items-center gap-2 rounded-md bg-accent px-8 py-3 font-mono text-[13px] uppercase tracking-[0.3em] text-accent-foreground transition-all hover:shadow-[0_0_25px_-8px_var(--pink)]"
+                  className="inline-flex items-center gap-2 rounded-md border border-foreground bg-transparent px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.32em] text-foreground transition-colors duration-200 hover:border-accent hover:text-accent"
                 >
                   View build stages
                 </a>
                 <Link
                   to="/community"
-                  className="inline-flex items-center gap-2 rounded-md border border-border bg-card/60 px-6 py-3 font-mono text-[11px] uppercase tracking-[0.3em] text-foreground backdrop-blur transition-colors hover:border-accent"
+                  className="inline-flex items-center gap-2 rounded-md border border-border bg-card/60 px-6 py-3 font-mono text-[11px] uppercase tracking-[0.3em] text-foreground backdrop-blur transition-colors hover:border-white"
                 >
                   <Users className="h-3.5 w-3.5" /> Community projects
                 </Link>
@@ -193,12 +210,12 @@ function CarPage() {
               <h2 className="mt-2 font-display text-3xl font-normal text-foreground md:text-4xl">
                 Tuning roadmap
               </h2>
-              <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-muted-foreground">
+              <div className="font-mono text-[12px] uppercase tracking-[0.35em] text-muted-foreground">
                 <br></br>
                 Estimated price is for parts only!
               </div>
             </div>
-            <div className="hidden font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground md:block">
+            <div className="hidden font-mono text-[12px] uppercase tracking-[0.3em] text-muted-foreground md:block">
               {car.stages.length} stages
             </div>
           </div>
@@ -218,80 +235,97 @@ function CarPage() {
                       note: string;
                       parts: Part[];
                     },
-              ) => (
-                <AccordionItem
-                  key={stage.id}
-                  value={`stage-${stage.id}`}
-                  className="border-b border-border/60"
-                >
-                  <AccordionTrigger className="py-7 hover:no-underline">
-                    <div className="flex flex-1 items-start gap-6 pr-4 text-left">
-                      <div className="min-w-[72px] flex flex-col items-center gap-4 pt-1">
-                        <div className="font-mono text-xs uppercase tracking-[0.3em] text-neon">
-                          {stage.code}
+              ) => {
+                const partsByCategory = Array.from(
+                  stage.parts.reduce((acc, part) => {
+                    const category = getCategoryForPart(part.name);
+                    if (!acc.has(category)) acc.set(category, []);
+                    acc.get(category)!.push(part);
+                    return acc;
+                  }, new Map<string, Part[]>())
+                );
+
+                return (
+                  <AccordionItem
+                    key={stage.id}
+                    value={`stage-${stage.id}`}
+                    className="border-b border-border/60"
+                  >
+                    <AccordionTrigger className="py-7 hover:no-underline">
+                      <div className="flex flex-1 items-start gap-6 pr-4 text-left">
+                        <div className="min-w-[72px] flex flex-col items-center gap-4 pt-1">
+                          <div className="font-mono text-xs uppercase tracking-[0.3em] text-neon">
+                            {stage.code}
+                          </div>
+                          {stage.id > 0 ? (
+                            <img
+                              src={stageIcons[stage.id]}
+                              alt={`${stage.code} icon`}
+                              className="h-16 w-16 object-contain"
+                            />
+                          ) : null}
+                        </div>
+                        <div className="flex-1">
+                          <div className="font-sans text-2xl font-semibold text-foreground tracking-[0.06em] md:text-3xl">
+                            {stage.title}
+                          </div>
+                          <div className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground tracking-[0.2em]">
+                            {stage.subtitle}
+                          </div>
                         </div>
                         {stage.id > 0 ? (
-                          <img
-                            src={stageIcons[stage.id]}
-                            alt={`${stage.code} icon`}
-                            className="h-16 w-16 object-contain"
-                          />
+                          <div className="hidden shrink-0 text-right md:block">
+                            <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+                              Power
+                            </div>
+                            <div className="mt-1 font-mono text-sm text-foreground">
+                              {stage.power}
+                            </div>
+                            <div className="mt-3 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+                              Torque
+                            </div>
+                            <div className="mt-1 font-mono text-sm text-neon">{stage.torque}</div>
+                          </div>
                         ) : null}
                       </div>
-                      <div className="flex-1">
-                        <div className="font-sans text-2xl font-semibold text-foreground tracking-[0.06em] md:text-3xl">
-                          {stage.title}
-                        </div>
-                        <div className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground tracking-[0.2em]">
-                          {stage.subtitle}
-                        </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="pb-10">
+                      <div className="mb-6 flex flex-wrap gap-3 md:hidden">
+                        <span className="rounded border border-border bg-card/60 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.25em] text-foreground">
+                          {stage.power}
+                        </span>
+                        <span className="rounded border border-border bg-card/60 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.25em] text-neon">
+                          {stage.torque}
+                        </span>
                       </div>
-                      {stage.id > 0 ? (
-                        <div className="hidden shrink-0 text-right md:block">
-                          <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-                            Power
-                          </div>
-                          <div className="mt-1 font-mono text-sm text-foreground">
-                            {stage.power}
-                          </div>
-                          <div className="mt-3 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-                            Torque
-                          </div>
-                          <div className="mt-1 font-mono text-sm text-neon">{stage.torque}</div>
-                        </div>
+                      {stage.note ? (
+                        <p className="mb-6 border-l-2 border-accent/60 bg-card/40 py-2 pl-4 font-mono text-xs leading-relaxed text-muted-foreground">
+                          Note — {stage.note}
+                        </p>
                       ) : null}
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="pb-10">
-                    <div className="mb-6 flex flex-wrap gap-3 md:hidden">
-                      <span className="rounded border border-border bg-card/60 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.25em] text-foreground">
-                        {stage.power}
-                      </span>
-                      <span className="rounded border border-border bg-card/60 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.25em] text-neon">
-                        {stage.torque}
-                      </span>
-                    </div>
-                    {stage.note ? (
-                      <p className="mb-6 border-l-2 border-accent/60 bg-card/40 py-2 pl-4 font-mono text-xs leading-relaxed text-muted-foreground">
-                        Note — {stage.note}
-                      </p>
-                    ) : null}
-                    <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-                      {groupPartsForDisplay(stage.parts).map((item, index) =>
-                        item.kind === "alternative-group" ? (
-                          <AlternativeGroup
-                            key={`${item.title}-${index}`}
-                            title={item.title}
-                            parts={item.parts}
-                          />
-                        ) : (
-                          <PartCard key={item.part.name} part={item.part} />
-                        ),
-                      )}
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              ),
+                      
+                      {/* Sub-categories */}
+                      <div className="flex flex-col gap-12 mt-6">
+                        {partsByCategory.map(([category, catParts]) => (
+                          <div key={category}>
+                            <div className="flex items-center gap-4 mb-5">
+                              <h4 className="font-mono text-[15px] uppercase tracking-[0.3em] text-foreground/80">
+                                {category}
+                              </h4>
+                              <div className="h-px flex-1 bg-gradient-to-r from-border/80 to-transparent"></div>
+                            </div>
+                            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                              {catParts.map((part) => (
+                                <PartCard key={part.name} part={part} make={car.make} model={car.model} chassis={car.chassis} />
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                );
+              },
             )}
           </Accordion>
         </div>
@@ -302,7 +336,7 @@ function CarPage() {
         <Link
           to="/cars/$slug"
           params={{ slug: nextCar.slug }}
-          className="group relative flex items-center justify-between gap-6 overflow-hidden rounded-2xl border border-border bg-card p-8 transition-all duration-700 hover:border-accent hover:shadow-[0_0_40px_-15px_var(--pink)] md:p-12"
+          className="group relative flex items-center justify-between gap-6 overflow-hidden rounded-2xl border border-border bg-card p-8 transition-all duration-200 hover:border-accent md:p-12"
         >
           <div>
             <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-muted-foreground">
@@ -330,147 +364,78 @@ function CarPage() {
   );
 }
 
-function groupPartsForDisplay(parts: Part[]) {
-  const displayItems: Array<
-    { kind: "part"; part: Part } | { kind: "alternative-group"; title: string; parts: Part[] }
-  > = [];
-  let buffer: Part[] = [];
-  let activeTitle: string | null = null;
-
-  const flushBuffer = () => {
-    if (!buffer.length) return;
-
-    if (buffer.length > 1 && activeTitle) {
-      displayItems.push({ kind: "alternative-group", title: activeTitle, parts: buffer });
-    } else {
-      buffer.forEach((part) => displayItems.push({ kind: "part", part }));
-    }
-
-    buffer = [];
-    activeTitle = null;
-  };
-
-  parts.forEach((part) => {
-    const group = part.group;
-
-    if (group?.kind === "alternative") {
-      if (activeTitle && activeTitle !== group.title) {
-        flushBuffer();
-      }
-
-      buffer.push(part);
-      activeTitle = group.title;
-    } else {
-      flushBuffer();
-      displayItems.push({ kind: "part", part });
-    }
-  });
-
-  flushBuffer();
-  return displayItems;
-}
-
-function AlternativeGroup({ title, parts }: { title: string; parts: Part[] }) {
-  return (
-    <div className="rounded-xl border border-border/70 bg-background/30 p-4 md:col-span-2">
-      <div className="mb-3 flex items-center gap-2">
-        <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-          {title}
-        </div>
-        <div className="h-px flex-1 bg-border/60" />
-      </div>
-      <Accordion type="single" collapsible className="space-y-2">
-        {parts.map((part, index) => (
-          <AccordionItem
-            key={part.name}
-            value={part.name}
-            className="overflow-hidden rounded-lg border border-border/60 bg-card/60"
-          >
-            <AccordionTrigger className="px-4 py-3 text-left hover:no-underline">
-              <div className="flex w-full items-center justify-between gap-3">
-                <div className="min-w-0 text-left">
-                  <div className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted-foreground">
-                    {index === 0 ? "Option A" : "Option B"}
-                  </div>
-                  <div className="mt-1 font-mono text-sm font-medium uppercase tracking-[0.14em] text-foreground">
-                    {part.name}
-                  </div>
-                  <div className="mt-1 text-left text-xs text-muted-foreground">{part.brand}</div>
-                </div>
-                <span className="shrink-0 rounded-full border border-border/70 bg-background/70 px-2.5 py-1 font-mono text-[8px] uppercase tracking-[0.3em] text-muted-foreground">
-                  Expand
-                </span>
-              </div>
-            </AccordionTrigger>
-            <AccordionContent className="px-4 pb-4">
-              <div className="border-t border-border/50 pt-3">
-                <PartCard part={part} />
-              </div>
-            </AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
-    </div>
-  );
-}
-
-function PartCard({ part }: { part: Part }) {
+function PartCard({ part, make, model, chassis }: { part: Part; make: string; model: string; chassis: string }) {
+  // Now includes make, model, and chassis (e.g., "Nissan Silvia S15 Mishimoto...")
+  const query = `${make} ${model} ${chassis} ${part.brand} ${part.name}`;
+  
   const links: { label: string; url: string }[] =
     part.links && part.links.length > 0
       ? part.links
       : [
           {
-            label: "Search on Google",
-            url: `https://www.google.com/search?q=${encodeURIComponent(part.brand + " " + part.name)}`,
+            label: "GOOGLE",
+            url: `https://www.google.com/search?q=${encodeURIComponent(query)}`,
           },
           {
-            label: "Find on eBay",
-            url: `https://www.ebay.com/sch/i.html?_nkw=${encodeURIComponent(part.brand + " " + part.name)}`,
-          },
-          {
-            label: "Summit Racing",
-            url: `https://www.summitracing.com/search?searchTerm=${encodeURIComponent(part.brand + " " + part.name)}`,
+            label: "EBAY",
+            url: `https://www.ebay.com/sch/i.html?_nkw=${encodeURIComponent(query)}`,
           },
         ];
 
   return (
-    <div className="group rounded-lg border border-border bg-card/60 p-5 transition-all duration-500 hover:border-accent hover:bg-card">
-      <div className="flex items-start gap-3">
-        <div className="min-w-0">
-          <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-            {part.brand}
-          </div>
-          <div className="mt-1 font-mono text-sm font-medium uppercase tracking-[0.16em] text-foreground sm:text-base">
-            {part.name}
-          </div>
-          {part.price ? (
-            <div className="mt-2 text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-              Estimated Cost
-              <span className="ml-1 font-mono text-[11px] text-foreground">{part.price}</span>
-            </div>
-          ) : null}
-        </div>
+    <div className="group relative overflow-hidden border border-border/30 border-l-2 border-l-neon/70 bg-gradient-to-br from-card/40 to-background/20 p-5 backdrop-blur-md transition-colors hover:border-border/80 hover:bg-card/60">
+      
+      {/* Brand Watermark */}
+      <div className="pointer-events-none absolute -bottom-4 -right-2 z-0 select-none font-display text-[60px] font-bold italic tracking-tighter text-muted-foreground/5 transition-transform duration-700 group-hover:scale-105 group-hover:text-muted-foreground/10 sm:text-[80px]">
+        {part.brand}
       </div>
 
-      {part.note ? (
-        <p className="mt-3 border-l border-border pl-3 text-xs text-muted-foreground">
-          {part.note}
-        </p>
-      ) : null}
+      <div className="relative z-10 flex h-full flex-col justify-between gap-4">
+        <div>
+          <div className="flex items-start justify-between gap-4">
+            <div className="min-w-0">
+              <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+                {part.brand}
+              </div>
+              <div className="mt-1.5 font-mono text-sm font-medium uppercase tracking-[0.16em] text-foreground sm:text-base">
+                {part.name}
+              </div>
+            </div>
+            
+            {part.price && (
+              <div className="shrink-0 text-right">
+                <div className="font-mono text-[8px] uppercase tracking-[0.3em] text-muted-foreground">
+                  Est. Cost
+                </div>
+                <div className="mt-0.5 font-mono text-[11px] text-foreground">
+                  {part.price}
+                </div>
+              </div>
+            )}
+          </div>
 
-      <div className="mt-4 flex flex-wrap gap-2 border-t border-border/60 pt-3">
-        {links.map((l) => (
-          <a
-            key={l.label}
-            href={l.url}
-            target="_blank"
-            rel="noopener noreferrer sponsored"
-            className="inline-flex items-center gap-1.5 rounded border border-border bg-background/60 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground transition-colors hover:border-accent hover:text-foreground"
-          >
-            {l.label}
-            <ExternalLink className="h-2.5 w-2.5" />
-          </a>
-        ))}
+          {part.note && (
+            <p className="mt-4 border-l border-muted-foreground/30 pl-3 font-mono text-[11px] leading-relaxed text-muted-foreground">
+              {part.note}
+            </p>
+          )}
+        </div>
+
+        {/* Minimalist Data Links */}
+        <div className="mt-2 flex flex-wrap gap-5 border-t border-border/40 pt-4">
+          {links.map((l) => (
+            <a
+              key={l.label}
+              href={l.url}
+              target="_blank"
+              rel="noopener noreferrer sponsored"
+              className="group/link flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-[0.25em] text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {l.label}
+              <ExternalLink className="h-3 w-3 transition-transform duration-300 group-hover/link:-translate-y-[2px] group-hover/link:translate-x-[2px] group-hover/link:text-neon" />
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -482,7 +447,7 @@ function SpecItem({ label, value }: { label: string; value: string }) {
       <div className="font-mono text-[12px] uppercase tracking-[0.3em] text-muted-foreground">
         {label}
       </div>
-      <div className="mt-1 font-display text-l text-foreground tracking-[0.1em]">{value}</div>
+      <div className="mt-1 font-display text-l tracking-[0.1em] text-foreground">{value}</div>
     </div>
   );
 }

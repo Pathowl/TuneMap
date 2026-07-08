@@ -40,11 +40,8 @@ function Models() {
   return (
     <section className="mx-auto max-w-[1200px] px-6 pt-14 pb-24 md:px-10 md:pt-20">
       <div className="mb-8 border-b border-border/60 pb-4">
-        <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-muted-foreground">
-          01 · Models
-        </div>
         <h1 className="mt-2 font-display text-4xl font-normal text-foreground md:text-5xl">
-          Select your <span className="italic text-neon">chassis</span>.
+          Select your <span className="text-neon">chassis!</span>
         </h1>
       </div>
 
@@ -68,7 +65,7 @@ function Models() {
 
       {matches.length === 0 ? (
         <div className="rounded-lg border border-dashed border-border bg-card/40 p-16 text-center">
-          <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-muted-foreground">
+          <div className="font-mono text-[20px] uppercase tracking-[0.35em] text-muted-foreground">
             No chassis matched
           </div>
           <p className="mt-2 text-sm text-muted-foreground">
@@ -80,10 +77,10 @@ function Models() {
           {grouped.map(([brand, cars]) => (
             <div key={brand}>
               <div className="mb-4 flex items-baseline justify-between border-b border-border/60 pb-2">
-                <div className="font-mono text-[15px] uppercase tracking-[0.35em] text-foreground">
+                <div className="font-mono text-[20px] uppercase tracking-[0.35em] text-foreground">
                   {brand}
                 </div>
-                <div className="font-mono text-[13px] uppercase tracking-[0.3em] text-muted-foreground">
+                <div className="font-mono text-[15px] uppercase tracking-[0.3em] text-muted-foreground">
                   {String(cars.length).padStart(2, "0")} chassis
                 </div>
               </div>
@@ -103,14 +100,14 @@ function Models() {
                       className="absolute inset-0 h-full w-full object-cover opacity-100 dark:opacity-70 transition-all duration-700 group-hover:scale-105 group-hover:opacity-100"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-white/25 to-transparent transition-opacity duration-500 dark:from-background dark:via-background/50 dark:to-transparent dark:group-hover:from-background/80" />
-                    <div className="absolute left-4 top-4 rounded border border-white/25 bg-black/40 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.3em] text-white backdrop-blur">
+                    <div className="absolute left-5 top-4 rounded border border-white/25 bg-black/40ransparebntrayinkhite px-2 py-0.5 font-mono text-[14px] uppercase tracking-[0.3em] text-white backdrop-blur">
                       {car.chassis}
                     </div>
                     <div className="absolute inset-x-0 bottom-0 p-5">
-                      <div className="font-display text-2xl italic text-foreground md:text-3xl">
+                      <div className="font-sans text-[2rem] font-semibold uppercase tracking-[-0.04em] text-foreground md:text-[2.3rem]">
                         {car.model}
                       </div>
-                      <div className="mt-1 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
+                      <div className="mt-1 flex items-center justify-between font-mono text-[13px] uppercase tracking-[0.1em] text-muted-foreground">
                         <span>{car.engine} · {car.stockHp}</span>
                         <ArrowRight className="h-3.5 w-3.5 -translate-x-1 text-foreground opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
                       </div>
